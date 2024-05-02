@@ -4,8 +4,8 @@ const session=require("express-session")
 //const nocache = require("nocache")
 
 
-const userRoute=require("./routes/userroute")
-const adminRoute=require("./routes/adminroute")
+const userRoute=require("./Routes/userroute")
+const adminRoute=require("./Routes/adminroute")
 const ConnectDB = require("./database/connection")
 
 ConnectDB()
