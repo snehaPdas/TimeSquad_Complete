@@ -385,6 +385,7 @@ const getOrderDetailsPage = async (req, res) => {
       select: "productName salePrice productImage",
     });
     const findUser = await User.findOne({ _id: userId });
+    
     res.render("User/orderDetails", {
       orders: findOrder,
       user: findUser,
