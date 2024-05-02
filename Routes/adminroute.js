@@ -4,10 +4,10 @@ const express=require("express")
 const route=express.Router()
 
 
-const adminController=require("../controllers/admincontroller")
+const adminController=require("../controllers/adminController")
 const customerController=require("../controllers/customercontroller")
-const categoryController=require("../controllers/categorycontroller")
-const productController=require("../controllers/productcontroller")
+const categoryController=require("../controllers/categoryController")
+const productController=require("../controllers/productController")
 const orderController=require("../controllers/orderController")
 const salesReportController=require("../controllers/salesReportController")
 
