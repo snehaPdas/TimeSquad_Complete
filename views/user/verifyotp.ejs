@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Time Squad</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css?v=3.4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- Add jQuery library -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+            integrity="sha256-oP6HI/t1ektd8t7vNlvxapogLV7h1lDcEdT6Q04vF9s="
+            crossorigin="anonymous"></script>
+
+</head>
+
+
+
+                 <div class="container col-4 login_wrap widget-taber-content p-30 background-white border-radius-5 mt-30">
+                    <div class="padding_eight_all bg-white">
+                        <div class="heading_s1">
+                            <h3 class="mb-30">Email Verification</h3>
+                        </div>
+                
+                        <!-- Add your email verification modal content here -->
+                
+                        <!-- Add OTP input field -->
+                        
+                            <div class="form-group">
+                                <label for="otp">Enter OTP:</label>
+                                <input type="text" id="otp" name="otp" class="form-control" required>
+                            </div>
+                
+                            <!-- Add Verify Email button -->
+                            <button onclick="handleOtp()" class="btn btn-primary">Verify Email</button>
+                
+                           
+                            <div class="text-muted text-center pt-25">
+                                <p id="timer">Time left: <span id="countdown">60</span> seconds</p>
+                                <a id="resendLink" onclick="resendOtp()" style="display:none;">Resend OTP</a>
+                            </div>
+                           <div class="alert alert-danger" id="errorMessage">
+                            </div>
+                         <div class="text-muted text-center pt-25">
+                            Already verified? <a href="/login">Login now</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--  -->
+                <script>
+                    function resendOtp(){
+                    fetch("/resendOtp",{
+                            method : "POST"
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                            console.log('Resend OTP successful');
+                            toggleVisibility(true);
+                            startCountdown();
+                                
+                            } else {
+                                
+                            console.error('Resend OTP failed:', data.message);
+                            }
+                        })
+                
+                        .catch(error => {
+                            console.error('Error:', error);
+                        });
+                    }
+                
+                    window.onload = function() {
+                        startCountdown();
+                    };
+
+                        function startCountdown() {
+                        var seconds = 60;
+                        var countdownElement = document.getElementById('countdown');
+                        var resendLink = document.getElementById('resendLink');
+                        var countdownInterval = setInterval(function () {
+                            seconds--;
+                            countdownElement.innerText = seconds;
+                            if (seconds <= 0) {
+                                clearInterval(countdownInterval);
+                                toggleVisibility(false); // Hide the timer and show the Resend OTP link
+                            }
+                        }, 1000);
+                    }
+                
+                    function toggleVisibility(showTimer) {
+                        var countdownElement = document.getElementById("countdown");
+                        var resendLink = document.getElementById('resendLink');
+                
+                        if (showTimer) {
+                            countdownElement.style.display = 'inline'; // Show the timer
+                            resendLink.style.display = 'none'; // Hide the Resend OTP link
+                        } else {
+                            countdownElement.style.display = 'none'; // Hide the timer
+                            resendLink.style.display = 'inline'; // Show the Resend OTP link
+                        }
+                    }
+                
+                    setTimeout(()=>{
+                        document.getElementById("errorMessage").style.display = "none"
+                    },3000)
+                
+                </script>
+                <!--  -->
+                <script>
+                    const errorMessageElement = document.getElementById('errorMessage');
+                    function handleOtp() {
+                     const otp = document.getElementById('otp').value;
+                
+                        // Perform client-side validation if needed
+                
+                        $.ajax({
+                            method: "POST",
+                            url: "/verifyotp",
+                            data: { otp },
+                            success: (response) => {
+                                if (response.success) {
+                                    console.log('AJAX Response:', response);
+                                    // Redirect on successful verification
+                                    
+                                    location.href = "/login";
+                                    errorMessageElement.style.display = 'none';
+                                } else {
+                                    // Display error message on unsuccessful verification
+                                    errorMessageElement.innerHTML = 'Entered OTP is incorrect';
+                                    errorMessageElement.style.display = 'block';
+                
+                                    setTimeout(() => {
+                                        errorMessageElement.style.display = 'none';
+                                    }, 3000);
+                
+                                    // Clear the entered OTP after a delay
+                                    setTimeout(() => {
+                                        document.getElementById('otp').value = '';
+                                    }, 3000);
+                                }
+                            },
+                            error: (xhr, status, error) => {
+                                // Handle AJAX errors
+                                console.error('AJAX Error:', xhr.responseText);
+                                errorMessageElement.innerHTML = 'Error in OTP verification';
+                                errorMessageElement.style.display = 'block';
+                            }
+                        });
+                    }
+                </script>
+                 <!-- Preloade
+                <Vendor JS-->
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+                <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+                <script src="/user-assets/js/vendor/modernizr-3.6.0.min.js"></script>
+                <script src="/user-assets/js/vendor/jquery-3.6.0.min.js"></script>
+                <script src="/user-assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+                <script src="/user-assets/js/vendor/bootstrap.bundle.min.js"></script>
+                <script src="/user-assets/js/plugins/slick.js"></script>
+                <script src="/user-assets/js/plugins/jquery.syotimer.min.js"></script>
+                <script src="/user-assets/js/plugins/wow.js"></script>
+                <script src="/user-assets/js/plugins/jquery-ui.js"></script>
+                <script src="/user-assets/js/plugins/perfect-scrollbar.js"></script>
+                <script src="/user-assets/js/plugins/magnific-popup.js"></script>
+                <script src="/user-assets/js/plugins/select2.min.js"></script>
+                <script src="/user-assets/js/plugins/waypoints.js"></script>
+                <script src="/user-assets/js/plugins/counterup.js"></script>
+                <script src="/user-assets/js/plugins/jquery.countdown.min.js"></script>
+                <script src="/user-assets/js/plugins/images-loaded.js"></script>
+                <script src="/user-assets/js/plugins/isotope.js"></script>
+                <script src="/user-assets/js/plugins/scrollup.js"></script>
+                <script src="/user-assets/js/plugins/jquery.vticker-min.js"></script>
+                <script src="/user-assets/js/plugins/jquery.theia.sticky.js"></script>
+                <script src="/user-assets/js/plugins/jquery.elevatezoom.js"></script>
+                <!-- Template  JS -->
+                <script src="/user-assets/js/maind134.js?v=3.4"></script>
+                <script src="/user-assets/js/shopd134.js?v=3.4"></script>
+                
+                
+                
+                
+                
+                </body>
+                
+                
+                <!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jul 2023 10:09:48 GMT -->
+                </html>

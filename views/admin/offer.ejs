@@ -1,0 +1,458 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> Admin</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    
+    <link rel="shortcut icon" type="image/x-icon" href="admin-assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin-assets/css/main.css" rel="stylesheet" type="text/css" />
+   <!-- Include SweetAlert CSS and JS files from CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="/admin-assets/imgs/theme/TimeSquad logo.png" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- User -->
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/user"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+
+                </li>
+                <!-- orders -->
+                 <!-- orders -->
+                 <li class="menu-item">
+                    <a class="menu-link" href="/admin/orderList"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+               <!-- Products -->
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                </li>
+                <!-- <a href="">Hiii</a> -->
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/category"> <i class="icon material-icons md-map"></i>
+                        <span class="text">Category</span>
+                    </a>
+
+                </li>
+             <li class="menu-item">
+                    <a class="menu-link" href="/admin/addProducts"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Add product</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/coupon"> <i class="icon material-icons md-class"></i>
+                        <span class="text">Coupon</span> </a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/offer"> <i class="icon material-icons md-description"></i>
+                        <span class="text">Offer</span> </a>
+                </li>
+
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/salesReport"> <i class="icon material-icons md-description"></i>
+                        <span class="text">Sales Report</span> </a>
+                </li>
+            </ul>
+            <hr>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+               
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">4</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="admin-assets/imgs/theme/flag-us.png" alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="admin-assets/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <style>
+                .cancel-text {
+                    color: red;
+                    font-style: italic;
+                    font-weight: bold;
+                    /* Add any additional styling you want here */
+                }
+            </style>
+            
+        </header>
+<!-- .......................................................................................... -->
+
+<style>
+    .col-md-3 {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    .error-message {
+        color: red;
+        margin-top: 5px;
+    }
+
+    .form-label {
+        margin-bottom: 8px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+    .d-grid {
+        margin-top: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: #fff;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+
+ <section class="content-main">
+    <div class="content-header">
+        <div>
+            <h2 class="content-title card-title">Offers </h2>
+
+        </div>
+
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <form method="post" action="/admin/createOffer">
+
+
+                            <div class="mb-4">
+                                <label for="offer-name" class="form-label">Offer Name</label>
+                                <input type="text" id="offer-name" name="offerName" placeholder="Type here"
+                                    class="form-control" />
+                                <div id="error-offer-name" class="error-message"></div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="offer-on" class="form-label">Offer On</label>
+                                <select id="offer-on" name="offerOn"  class="form-control">
+                                    <option value="" disabled selected>Select offerOn</option>
+                                    <option value="product">Product</option>
+                                    <option value="category">Category</option>
+                                </select>
+                                <div id="error-coupon-on" class="error-message"></div>
+                            </div>
+                                     <div class="mb-4">
+                                      <label class="form-label">Product</label>
+                                      <select
+                                        class="form-select border"
+                                        style="width: 150px"
+                                        name="product" id="product-select">
+                                        <div id="product-error"class="error-message"></div>
+            
+                                        
+                                        <% for (let i = 0; i < prodata.length; i++) { %> 
+                                        
+                                            <option value="<%= prodata[i]._id%>">
+                                              <%= prodata[i].productName %>
+                                            </option>
+                                            
+                                             <% } %>
+                                          
+                                         
+                                      </select>
+                                      </div>
+                                    
+                              
+
+                                <div class="mb-4">
+                                    <label class="form-label">Category</label>
+                                    <select
+                                      class="form-select border"
+                                      style="width: 150px"
+                                      name="category" id="category-select">
+                                      <div id="category-error"class="error-message"></div>
+          
+                                      <% for (let i = 0; i < catdata.length; i++) { %> <%
+                                        if (catdata[i].isListed) { %>
+                                        <option value="<%= catdata[i]._id %>">
+                                          <%= catdata[i].name %>
+                                        </option>
+                                        <% } %>
+                                         <% } %>
+                                      
+                                       
+                                    </select>
+                                    </div>
+                            
+
+
+                            <div>
+                                <label for="endingDate" class="form-label">Expire on</label>
+                                <input type="date" name="endDate" id="endate" class="form-control" required="true"
+                                    id="expiringDate" />
+                                <div id="error-end-date" class="error-message"></div>
+                            </div>
+
+                           
+
+                            <div>
+                                <label for="offer-price" class="form-label">Discount Price</label>
+                                <input type="text" name="offerPrice" placeholder="Type here" class="form-control" />
+                                <div id="error-offer-price" class="error-message"></div>
+                            </div>
+                           
+
+                          
+
+                            <div class="d-grid">
+                                <button class="btn btn-primary mt-20" onclick=" return validateForm(event)"
+                                    type="submit">Add Offer</button>
+                            </div>
+
+                          
+
+                             
+                            <div id="err-msg" class="error-message"></div>
+
+                        </body>
+                    </form>
+
+                </div>
+            
+              <div class="col-md-7 ml-105">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+
+
+                                    <tr class="text-left">
+                                        <th>Name</th>
+                                        <th>DiscountOn</th>
+                                        <th>Expire on</th>
+                                        <th>Discount(%)</th>
+                                         <th>Delete</th>
+
+                                </tr>
+                            </thead>
+
+                            <% for(let i=0;i<offerData.length;i++){%>
+                            
+                                <tbody>
+
+                                    <td class="text-start"><%=offerData[i].name %> </td>
+                                    <td class="text-start"><%=offerData[i].discountOn%></td>
+                                    <td class="text-start"><%=offerData[i].expireOn.toLocaleDateString()%></td>
+                                    <td class="text-start"><%=offerData[i].DiscountValue %>%</td>
+
+
+                                    
+                                   
+
+                                    <td class="text-start" width="10%">
+                                        <a href="#" class="btn btn-sm btn-danger rounded font-sm mt-15" onclick="openDeleteModal('<%= offerData[i]._id %>')">Delete</a>
+                                
+                                
+                                    </td>
+                                    
+                                </tbody>
+                                    
+                           <%}%>
+
+                        </table>
+
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</section> 
+
+
+<!-- Modal for confirmation -->
+<div id="deleteModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Do you want to delete this ?</p>
+        </div>
+        <div class="modal-footer">
+          <button id="confirmDelete" class="btn btn-danger">Yes</button>
+          <button id="cancelDelete" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <input type="hidden" id="offerId" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+    function openDeleteModal(offerId) {
+      document.getElementById('offerId').value = offerId;
+      document.getElementById('deleteModal').style.display = 'block';
+    }
+  
+    function closeDeleteModal() {
+      document.getElementById('deleteModal').style.display = 'none';
+    }
+  
+    document.getElementById('confirmDelete').addEventListener('click', function() {
+        var url
+      const offerId = document.getElementById('offerId').value;
+      url= '/admin/deleteoffer?id=' + offerId;
+      window.location.href = url;
+    });
+  
+    document.getElementById('cancelDelete').addEventListener('click', function() {
+      closeDeleteModal();
+    });
+  </script>
+  
+
+                
+
+<script>
+    const offerOnSelect = document.getElementById('offer-on');
+    const productSelect = document.getElementById('product-select');
+    const categorySelect = document.getElementById('category-select');
+    const productSelectValue = productSelect.value
+    const categorySelectValue= categorySelect.value
+
+    productSelect.value = null;
+    categorySelect.value = null;
+    
+    
+    offerOnSelect.addEventListener('change', function () {
+        if (this.value === 'product') {
+            productSelect.disabled = false;
+            categorySelect.disabled = true;
+            categorySelect.selectedIndex = 0;
+            // categorySelect.value = null;
+            productSelect.value = productSelectValue;
+
+        } else if (this.value === 'category') {
+            productSelect.disabled = true;
+            categorySelect.disabled = false;
+            productSelect.selectedIndex = 0;
+            // productSelect.value = null;
+            categorySelect.value=categorySelectValue
+
+
+        }
+    });
+
+
+
+</script>
+
+
+
+
+        <!-- ............................................. -->
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        
+<script src="admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="admin-assets/js/vendors/select2.min.js"></script>
+<script src="admin-assets/js/vendors/perfect-scrollbar.js"></script>
+<script src="admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+<script src="admin-assets/js/vendors/chart.js"></script>
+<script src="admin-assets/js/main.js" type="text/javascript"></script>
+<script src="admin-assets/js/custom-chart.js" type="text/javascript"></script>
+</body>
+</html>    

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jul 2023 10:04:24 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Time Squad</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/user-assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/user-assets/css/maind134.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- Add jQuery library -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+
+
+
+
+    <style>
+        /* Add your custom styles here */
+        .oval-btn {
+            border-radius: 20px; /* Adjust the value as needed */
+        }
+
+        .no-orders {
+    text-align: center; /* Center the text within the table cell */
+}
+    </style>
+
+</head>
+
+<body>
+ <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+                <div class="container">
+                    <div class="header-wrap">
+                        <div class="logo logo-width-1">
+                            <a href="/"><img src="/user-assets/imgs/theme/Logo.png" alt="logo"></a>
+                        </div>
+                    
+                            <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block " style="padding-left: 260px;">
+                                <nav>
+                                    <ul>
+                                        <li><a  href="/">Home</i></a>
+                                           
+                                        </li>
+                                        <li>
+                                            <a href="page-about.html">About</a>
+                                        </li>
+                                        <li><a href="/shop">Shop</i></a>
+                                           
+                                        </li>
+                                        <li>
+                                            <a href="page-contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header-action-right" style="padding-left: 300px;">
+                                <div class="header-action-2">
+                                    <div class="header-action-icon-2">
+                                        <a href="/wishlist">
+                                            <img class="svgInject" alt="Evara" src="/user-assets/imgs/theme/icons/icon-heart.svg">
+                                            <!-- <span class="pro-count blue">4</span> -->
+                                        </a>
+                                    </div>
+                                    <div class="header-action-icon-2">
+                                        <a class="mini-cart-icon" href="/cart">
+                                            <img alt="Evara" src="/user-assets/imgs/theme/icons/icon-cart.svg">
+                                            <!-- <span class="pro-count blue">2</span> -->
+                                        </a>
+                                        <% if (locals.user) { %>
+                                            <!-- Displayed when the user is logged in -->
+                                            <li class="dropdown nav-item">
+                                              <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
+                                                <!-- Uncomment the following line if you want to use an icon -->
+                                                <!-- <i class="fas fa-/user-circle"></i> -->
+                                                <img class="svgInject" alt="Evara" src="/user-assets/imgs/theme/icons/user-profile.svg" style="height: 25px; width: 25px; margin-top: 2px;">
+                                              </a>
+                                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                                                <a class="dropdown-item" href="/profile"><i class="material-icons md-perm_identity"></i> Profile</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item text-danger" href="/logout"><i class="material-icons md-exit_to_app"></i> Logout</a>
+                                              </div>
+                                            </li>
+                                          <% } else { %>
+                                            <!-- Displayed when the user is not logged in -->
+                                            <div class="single-mobile-header-info ml-25 pr-5">
+                                              <a href="/login">Login</a>
+                                            </div>
+                                          <% } %>
+                                          
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <!-- ............................................................................................................ -->
+
+                <main class="main">
+                    <div class="page-header breadcrumb-wrap">
+                        <div class="container">
+                            <div class="breadcrumb">
+                                <a href="/" rel="nofollow">Home</a>
+                                <span></span> Pages
+                                <span></span> Account
+                            </div>
+                        </div>
+                    </div>
+
+                    
+        <section class="pt-150 pb-150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 m-auto">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="dashboard-menu">
+                                    <ul class="nav flex-column" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab"
+                                                href="#dashboard" role="tab" aria-controls="dashboard"
+                                                aria-selected="false"><i
+                                                    class="fi-rs-settings-sliders mr-10"></i>Dashboard</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders"
+                                                role="tab" aria-controls="orders" aria-selected="false"><i
+                                                    class="fi-rs-shopping-bag mr-10"></i>Orders</a>
+                                        </li>
+                                         <!-- <li class="nav-item">
+                                            <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab"
+                                                href="#track-orders" role="tab" aria-controls="track-orders"
+                                                aria-selected="false"><i
+                                                    class="fi-rs-shopping-cart-check mr-10"></i>Wallet Status</a>
+                                        </li> -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab"
+                                                href="#wallet-history" role="tab" aria-controls="track-orders"
+                                                aria-selected="false"><i
+                                                    class="fi-rs-shopping-cart-check mr-10"></i>Wallet History</a>
+                                        </li>
+                                        <!-- <li class="nav-item">
+                                            <a class="nav-link" id="track-orders-tab" data-bs-toggle="tab"
+                                                href="#referal" role="tab" aria-controls="track-orders"
+                                                aria-selected="false"><i
+                                                    class="fi-rs-shopping-cart-check mr-10"></i>Referals</a>
+                                        </li> -->
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="address-tab" data-bs-toggle="tab" href="#address"
+                                                role="tab" aria-controls="address" aria-selected="true"><i
+                                                    class="fi-rs-marker mr-10"></i>My Address</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab"
+                                                href="#account-detail" role="tab" aria-controls="account-detail"
+                                                aria-selected="true"><i class="fi-rs-sign-out mr-10"></i>Account
+                                                details</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="/logout"><i
+                                                    class="fi-rs-sign-out mr-10"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content dashboard-content">
+                                    <div class="tab-pane fade show active" id="dashboard" role="tabpanel"
+                                        aria-labelledby="dashboard-tab">
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">User Profile</h5>
+                                            </div>
+                                            <div class="card-body text-center">
+                                                <img src="/user-assets/imgs/theme/icons/user-profile.svg"
+                                                    class="card-img-top rounded-circle mx-auto mt-3" alt="Profile Image"
+                                                    style="width: 100px; height: 100px; object-fit: cover;">
+                                                <div class="card-body text-center">
+                                                    <h5 class="card-title">
+                                                        <%=user.name %>
+                                                    </h5>
+                                                    <p class="card-text"><strong>Email:</strong>
+                                                       <%=user.email %>
+                                                    </p>
+                                                    <p class="card-text"><strong>Phone:</strong>
+                                                        <%=user.phone %>
+                                                    </p>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                          <!-- **************** -->
+
+                           <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Your Orders</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Status</th>
+                                                    <th>Total</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <% if (order) { %>
+
+                                                    <% for (let i=0; i < order.length; i++) { %>
+                                                        <tr>
+                                                            <td>
+                                                                <%= order[i]._id %>
+                                                            </td>
+
+                                                            <td>
+                                                                <%= order[i].orderStatus %>
+                                                            </td>
+
+
+                                                            <td>
+                                                                <%= order[i].totalPrice %>
+                                                            </td>
+
+                                                    
+                                                        
+                                                            <td><a href="/orderDetails?id=<%= order[i]._id %>"
+                                                                    class="btn-small d-block">View</a></td>
+                                                        </tr>
+                                                        
+                                                        <% } %>
+
+
+                                                        <% }else{ %>
+
+                                                            
+                                                        <tr class="no-orders">
+                                                                <td colspan="4">No Orders found</td>
+                                                                <% } %>
+                                                            
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -------------------------------wallet balance================ -->
+                        <!-- <div class="tab-pane fade" id="track-orders" role="tabpanel" aria-labelledby="track-orders-tab">
+                            <div class="card" style="width: 300px;">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Wallet Balance(in ₹) </h5>
+                                </div>
+                                <div class="card-body contact-from-area">
+                                    <div class="row">
+                                        <div class="col-lg-8 mx-auto text-center mt-90">
+                                            <form>
+                                                <div class="form-group">
+                                                    <label for="walletAmount" class="h4" style="color: blue;">Wallet Amount:</label>
+                                                    <div class="h3" style="color: green; font-size: 20px;">₹</div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        
+
+
+
+
+ <!-- ...................................wallet history ------------------------------------------>
+                             <div class="tab-pane fade" id="wallet-history" role="tabpanel"
+                                        aria-labelledby="orders-tab">
+                                
+                                        
+                                        <div class="form-group">
+                                            <label for="walletAmount" class="h4">Wallet Amount:₹&nbsp;<%= user.wallet %></label>
+                                            
+                                        </div>
+                                        <div>
+                                        <button type="button" class="btn btn-success"
+                                        onclick="addMoney()">Add Money</button>
+                                        
+                                        </div><br>
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">Wallet History</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>Order/Return  Date</th>
+                                                                <th>Status</th>
+                                                                <th>Amount(in ₹)</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+
+                                                            <% if (user.history) { %>
+
+                                                                <% for (let i=0; i < user.history.length; i++) { %>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <% const dateObject=(user.history[i].date
+                                                                                instanceof Date) ? user.history[i].date
+                                                                                : new Date(user.history[i].date); %>
+                                                                                <%= dateObject.toLocaleDateString() %>
+                                                                        </td>
+
+                                                                        <td>
+                                                                            <%= user.history[i].status %>
+                                                                        </td>
+                                                                        <td>
+                                                                            <% if (user.history[i].status==="debit" ) {%>
+                                                                                <%= user.history[i].amount %>
+                                                                                    <% }else{ %>
+                                                                                        <%= user.history[i].amount %>
+                                                                                            <% } %>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <% } %>
+
+                                                                        <% }else{ %>
+
+                                                                            <td>No Orders found</td>
+
+                                                                            <% } %>
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+                           <!-- ..... -->
+
+<div class="tab-pane fade" id="address" role="tabpanel"
+aria-labelledby="address-tab">
+<div class="row">
+
+    <%if(userAddress){%>
+        <%userAddress.address.forEach((address)=>{%>
+            <div class="col-lg-6">
+                <div class="card  mb-3 mb-lg-0">
+                    <div class="card-header">
+                        <h5 class="mb-0">
+                            
+                             <%=address.addressType%>
+                        </h5>
+                    </div>
+
+                    <div class="card-body">
+                        <address>
+                           Name: <%=address.name%><br />
+                             Ciity:   <%=address.city%>,<br />
+                            LandMark:      <%=address.landMark%> <br />
+                                State:        <%=address.state%>
+                        </address>
+                        <p>
+                          Pincode:  <%=address.pincode%>
+                        </p>
+                        <p>
+                          Phone:  <%=address.phone%>
+                        </p>
+                        <p>
+                          altPhone:  <%=address.altPhone%>
+                        </p>
+                        <div class="d-flex justify-content-between">
+                           <a href="/editAddress?id=<%=address._id%>"
+                                class="btn-small">Edit</a>
+                            <a href="/deleteAddress?id=<%=address._id%>"
+                                class="btn-small">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%})%>
+                <%}else{%>
+                    <div class="col-lg-6">
+                        <div class="card  mb-3 mb-lg-0">
+                            <div class="card-header">
+                                <h5 class="mb-0"></h5>
+                            </div>
+                            <div class="card-body">
+                                <address>
+                                    No address
+                                </address>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+                        <div>
+                            <a href="/addAddress">
+                                <button class="btn btn-primary w-70">Add
+                                    address</button>
+                            </a>
+                        </div>
+                    </div>
+                 </div>
+                <!-- ****************** -->
+                
+                <div class="tab-pane fade" id="account-detail" role="tabpanel"
+                aria-labelledby="account-detail-tab">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Account Details </h5>
+                    </div>
+                    <div class="card-body">
+
+                        <form method="post" action="/editUserDetails?id=<%= user._id %>">
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label> Name <span class="required">*</span></label>
+                                    <input required="" value="<%= user.name %>"
+                                        class="form-control square" name="name" type="text">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>Mobile Number <span class="required">*</span></label>
+                                    <input required="" value="<%= user.phone %>"
+                                        class="form-control square" name="phone" type="text">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label>New Password <span class="required">*</span></label>
+                                    <input value=""
+                                        class="form-control square" name="password" type="password">
+                                </div>
+
+                                <div class="col-md-12 mt-15">
+                                    <button type="submit" class="btn btn-fill-out submit"
+                                        name="submit" value="Submit">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+         <!-- ***************** -->
+         </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </section>
+
+        <!-- ...................... -->
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+        <script>
+       async function addMoney(){
+            const{
+                value:amount}=
+            await Swal.fire({
+                title:"Enter Amount",
+                input:"number",
+                inputLabel:"Amount",
+                inputPlaceholder:'₹'
+
+            })
+            
+            $.ajax({
+                
+                url:"/addmoney",
+                method:"post",
+                data:{
+                    total:amount
+                },
+                success:(data)=>{
+                    
+                    
+                    if(data.razorpay){
+                        var options = {
+        "key": "rzp_test_HEutcRuJKrbqL3",
+        "amount": data.order.amount,
+        "currency": "INR",
+        "name": "TimeSquad",
+        "description": "Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": data.order.id,
+        "handler": function (response) {
+            
+            verifyPayment(response, data);  
+
+        },
+        "prefill": {
+            "name": "User Name",
+            "email": "user@example.com",
+            "contact": "9999999999"
+        },
+        "theme": {
+            "color": "#FF00FF"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+}
+}})
+ }
+
+ function verifyPayment(response, order) {
+    
+
+$.ajax({
+    url: '/verify-payment',
+    method: 'post',
+    data: {
+        order,
+        response,
+        from: "wallet"
+    }, success: (response) => {
+        if (response) {
+            Swal.fire({
+                title: "Success",
+                text: "Payment has been succeed",
+                icon: "success",
+
+            }).then(function () {
+                location.reload()
+            });
+        } else {
+            Swal.fire("PAYMENT ERROR!", "Something wrong occured while processing the payment.", "error");
+            location.reload()
+        }
+
+    }
+})
+}
+
+    </script>
+    
+
+
+  <!--footer.................. //////////////////////////////////////////////////////////////////////////////////////////// -->
+
+  <section class="newsletter p-30 text-white wow fadeIn animated">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mb-md-3 mb-lg-0">
+                <div class="row align-items-center">
+                    <div class="col flex-horizontal-center">
+                </div>
+                  </div>
+            </div>
+            <div class="col-lg-5">
+                <!-- Subscribe Form -->
+                <form class="form-subcriber d-flex wow fadeIn animated">
+                </form>
+                <!-- End Subscribe Form -->
+            </div>
+        </div>
+    </div>
+</section>
+                
+            <!-- Vendor JS-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+    <script src="/user-assets/js/vendor/modernizr-3.6.0.min.js"></script>
+    <script src="/user-assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <script src="/user-assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+    <script src="/user-assets/js/vendor/bootstrap.bundle.min.js"></script>
+    <script src="/user-assets/js/plugins/slick.js"></script>
+    <script src="/user-assets/js/plugins/jquery.syotimer.min.js"></script>
+    <script src="/user-assets/js/plugins/wow.js"></script>
+    <script src="/user-assets/js/plugins/jquery-ui.js"></script>
+    <script src="/user-assets/js/plugins/perfect-scrollbar.js"></script>
+    <script src="/user-assets/js/plugins/magnific-popup.js"></script>
+    <script src="/user-assets/js/plugins/select2.min.js"></script>
+    <script src="/user-assets/js/plugins/waypoints.js"></script>
+    <script src="/user-assets/js/plugins/counterup.js"></script>
+    <script src="/user-assets/js/plugins/jquery.countdown.min.js"></script>
+    <script src="/user-assets/js/plugins/images-loaded.js"></script>
+    <script src="/user-assets/js/plugins/isotope.js"></script>
+    <script src="/user-assets/js/plugins/scrollup.js"></script>
+    <script src="/user-assets/js/plugins/jquery.vticker-min.js"></script>
+    <script src="/user-assets/js/plugins/jquery.theia.sticky.js"></script>
+    <script src="/user-assets/js/plugins/jquery.elevatezoom.js"></script>
+    <!-- Template  JS -->
+    <script src="/user-assets/js/maind134.js?v=3.4"></script>
+    <script src="/user-assets/js/shopd134.js?v=3.4"></script>
+    </body>
+    
+    
+    <!-- Mirrored from wp.alithemes.com/html/evara/evara-frontend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 15 Jul 2023 10:09:48 GMT -->
+</html>
+

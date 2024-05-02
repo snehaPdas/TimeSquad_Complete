@@ -1,0 +1,365 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title> Admin</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="admin-assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin-assets/css/main.css" rel="stylesheet" type="text/css" />
+   <!-- Include SweetAlert CSS and JS files from CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="/admin-assets/imgs/theme/TimeSquad logo.png" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- User -->
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/user"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+
+                </li>
+                <!-- orders -->
+                 <!-- orders -->
+                 <li class="menu-item">
+                    <a class="menu-link" href="/admin/orderList"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+               <!-- Products -->
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                </li>
+                <!-- <a href="">Hiii</a> -->
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/category"> <i class="icon material-icons md-map"></i>
+                        <span class="text">Category</span>
+                    </a>
+
+                </li>
+             <li class="menu-item">
+                    <a class="menu-link" href="/admin/addProducts"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Add product</span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/coupon"> <i class="icon material-icons md-class"></i>
+                        <span class="text">Coupon</span> </a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/offer"> <i class="icon material-icons md-description"></i>
+                        <span class="text">Offer</span> </a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/salesReport"> <i class="icon material-icons md-description"></i>
+                        <span class="text">Sales Report</span> </a>
+                </li>
+            </ul>
+            <hr>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+               
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">4</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="admin-assets/imgs/theme/flag-us.png" alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="admin-assets/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+            <style>
+                .cancel-text {
+                    color: red;
+                    font-style: italic;
+                    font-weight: bold;
+                    /* Add any additional styling you want here */
+                }
+            </style>
+            
+        </header>
+
+<!-- .............................................. -->
+<main class="container">
+       
+    <section class="content-main">
+        <div class="content-header">
+            <div class="mt-20">
+                <h2 class="content-title card-title">Order detail</h2>
+                <p>Details for Order ID: <%=orders._id%></p>
+            </div>
+        </div>
+        <div class="card mt-60">
+           <header class="card-header">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 mb-lg-0 mb-15">
+                        <span>
+                            <i class="material-icons md-date_range">Ordered Date: </i>
+                               <b>
+                                <% const dateOptions = { day: '2-digit', month: 'short', year: 'numeric' }; %>
+                                <%= new Date(orders.createdOn).toLocaleDateString('en-US', dateOptions) %>
+                            </b>
+                        </span> <br><br>
+                        <small class="text-muted">Order ID: <%=orders._id%></small>
+                    </div>
+                    <div class="col-lg-4 col-md-4 ms-auto text-md-end">
+                        <% if (orders.orderStatus !== "canceled") { %>
+                            <% if (orders.orderStatus === "Delivered") { %>
+                                <div class="row">
+                               <div class="col-2 ">
+                                <a href="/invoice?id=<%= orders._id %>"><button  class="btn btn-primary">Invoice</button></a>
+                                    </div>
+                                    <div class="col-5" style="margin-top: 10px; margin-left: 50px;">
+                                     <h4 class="text-success">Delivered</h4>
+                                    </div>
+                                    </div>
+                            <% } else if (orders.orderStatus === "Returned") { %>
+                                <h4 class="text-warning">Returned</h4>
+                                <% } else if (orders.orderStatus === "failed") { %>
+                                    <h4 class="text-warning">Failed</h4>
+
+                            <% } else { %>
+                                <select id="actionDropdown" class="form-select form-select-sm d-inline-block mb-lg-0 mb-15 mw-100" onchange="handleDropdownChange(this,'<%= orders._id %>')">
+                                    <option value="status">Status</option>
+                                    <option value="Shipped">Shipped</option>
+                                    <option value="Delivered">Delivered</option>
+                                    <option value="canceled">Cancelled</option>
+                                    
+
+                                </select>
+                            <% } %>
+                        <% } else { %>
+                            <div class="col-5" style="margin-top: 10px; margin-left: 50px;"></div>
+                            <h4 class="cancel-text">Cancelled</h4>
+
+                        <% } %>
+                    </div>
+                    </header>
+                 </div>
+                <div class="card-body">
+                <div class="row mb-50 mt-20 order-info-wrap background-info">
+                    <div class="col-md-4">
+                        <article class="icontext align-items-start ml-130">
+                            <span class="icon icon-sm rounded-circle bg-primary-light">
+                                <i class="text-primary material-icons md-person"></i>
+                            </span>
+                            <div class="text">
+                                <h6 class="mb-1">Customer</h6>
+                                <p class="mb-1">
+                                     <%= orders.address[0].name %> <br> <%= orders.address[0].phone %> 
+                                </p>
+                            </div>
+                          
+                        </article>
+                        
+                    </div> <!-- col// -->
+                    <div class="col-md-4">
+                        <article class="icontext align-items-start ml-130">
+                            <span class="icon icon-sm rounded-circle bg-primary-light">
+                                <i class="text-primary material-icons md-local_shipping"></i>
+                            </span>
+                            <div class="text">
+                                <h6 class="mb-1">Order info</h6>
+                                <p class="mb-1">
+                                    <%if(locals.orders){%>
+                                    Pay method: <%=orders.payment%> <br> Status:
+                                    <%if(orders.orderStatus=="pending"){%> 
+                                        Pending
+                                            <%}else if(orders.orderStatus=="Delivered"){%>
+                                                Delivered
+                                                <%}else if(orders.orderStatus=="Confirmed"){%>
+                                                    Confirmed
+                                                <%}else if(orders.orderStatus=="Returned"){%>
+                                                    Returned
+                                                    <%}else if(orders.orderStatus=="canceled"){%>
+                                                        Cancelled
+                                                        <%}else if(orders.orderStatus=="Shipped"){%>
+                                                            Shipped
+                                                            <%} else if(orders.orderStatus=="failed"){%>
+                                                                failed
+                                                                <%}%>
+                                                <%}%>
+                                            </p>
+                                           </div>
+                                   </article>
+                             </div> <!-- col// -->
+                       <div class="col-md-4">
+                        <article class="icontext align-items-start ml-130">
+                            <span class="icon icon-sm rounded-circle bg-primary-light">
+                                <i class="text-primary material-icons md-place"></i>
+                            </span>
+                            <div class="text">
+                                <h6 class="mb-1">Deliver to</h6>
+                                <p class="mb-1">
+                                    Address: <%=orders.address[0].landMark%>,<%=orders.address[0].city%> <br><%=orders.address[0].state%>,<%=orders.address[0].addressType%> <br><%=orders.address[0].pincode%>
+                                </p>
+                                
+                            </div>
+                        </article>
+                    </div> <!-- col// -->
+                </div> <!-- row // -->
+                     <div class="row">
+                        <div class="col-lg">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Product</th>
+                                            <th>Product Name</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th class="text-center" width="20%" class="text-end">Total</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% if (locals.orders && locals.orders.products) { %>
+                                            <% locals.orders.products.forEach((product) => { %>
+                                                <tr>
+                                                    <td class="text-center"> 
+                                                        <img src="/uploads/product-images/<%= product.product.productImage[0] %>" style="height: 7rem; width: 7rem;" class="img-xs" alt="Item">
+                                                        </td>
+                                                    <td class="text-center"> 
+                                                        <%= product.product.productName %>
+                                                    </td>
+                                                    <td class="text-center"> 
+                                                        ₹<%= product.product.salePrice%>
+                                                    </td>
+                                                    <td class="text-center"> 
+                                                        <%= product.quantity %>
+                                                    </td>
+                                                    <td class="text-center"> 
+                                                        ₹<%= (product.product.salePrice)*(product.quantity) %>
+                                                    </td>
+                                                </tr>
+                                               
+                                            <% }); %>
+                                            <% let orderId = locals.orders._id; %>
+                                        <% } else { %>
+                                            <tr>
+                                                <td colspan="5" class="text-center">No products found</td>
+                                            </tr>
+                                        <% } %>
+                                        <input type="hidden" name="" id="orderId" value="<%= orderId %>">
+                                    </tbody>
+                                    
+                                </table>
+                            </div> <!-- table-responsive// -->
+                        </div> <!-- col// -->
+                        <div class="col-lg-1"></div>
+                         <!-- col// -->
+                    </div>
+                </div>
+          </section>
+      </main>
+<!--  -->
+</main>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+ <script>
+function handleDropdownChange(selectElement) {
+       var selectedValue = selectElement.value;
+       if(selectedValue == "canceled"){
+          window.location.href = `/admin/cancelOrderAdmin?orderId=${orderId.value}&status=${selectedValue}`;
+       }else if(selectedValue == "Shipped"){
+           window.location.href = `/admin/changeStatus?orderId=${orderId.value}&status=${selectedValue}`;
+       }else if(selectedValue == "Delivered"){
+           window.location.href = `/admin/changeStatus?orderId=${orderId.value}&status=${selectedValue}`;
+       }else{
+           alert("error")
+       }
+     }
+function performAction() {
+    
+  }
+
+
+
+
+</script>
+<script src="admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="admin-assets/js/vendors/select2.min.js"></script>
+<script src="admin-assets/js/vendors/perfect-scrollbar.js"></script>
+<script src="admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+<script src="admin-assets/js/vendors/chart.js"></script>
+<!-- Main Script -->
+<script src="admin-assets/js/main.js" type="text/javascript"></script>
+<script src="admin-assets/js/custom-chart.js" type="text/javascript"></script>
+</body>
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:57 GMT -->
+</html>

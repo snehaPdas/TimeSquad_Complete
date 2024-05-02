@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Time Squad</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/user-assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/user-assets/css/maind134.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- Add jQuery library -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+ <style>
+        
+        .oval-btn {
+            border-radius: 20px;
+        }
+.custom-content-class {
+    font-size: 12px !important;   
+
+}
+.custom-popup-class {
+    height: 200px;
+     width: 50px;
+}
+.swal2-title {
+    font-size: 10px !important;
+}
+.swal2-icon.swal2-error {
+        font-size: 9px!important; /* Adjust the font size as needed */
+    }
+
+
+    </style>
+
+</head>
+
+<body>
+ <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+                <div class="container">
+                    <div class="header-wrap">
+                        <div class="logo logo-width-1">
+                            <a href="/"><img src="/user-assets/imgs/theme/Logo.png" alt="logo"></a>
+                        </div>
+                    
+                            <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block " style="padding-left: 260px;">
+                                <nav>
+                                    <ul>
+                                        <li><a  href="/">Home</i></a>
+                                           
+                                        </li>
+                                        <li>
+                                            <a href="page-about.html">About</a>
+                                        </li>
+                                        <li><a href="/shop">Shop</i></a>
+                                           
+                                        </li>
+                                        <li>
+                                            <a href="page-contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header-action-right" style="padding-left: 300px;">
+                                <div class="header-action-2">
+                                    <div class="header-action-icon-2">
+                                        <a href="/wishlist">
+                                            <img class="svgInject" alt="Evara" src="/user-assets/imgs/theme/icons/icon-heart.svg">
+                                            <!-- <span class="pro-count blue">4</span> -->
+                                        </a>
+                                    </div>
+                                    <div class="header-action-icon-2">
+                                        <a class="mini-cart-icon" href="/cart">
+                                            <img alt="Evara" src="/user-assets/imgs/theme/icons/icon-cart.svg">
+                                            <!-- <span class="pro-count blue">2</span> -->
+                                        </a>
+                                        <% if (locals.user) { %>
+                                            <!-- Displayed when the user is logged in -->
+                                            <li class="dropdown nav-item">
+                                              <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
+                                                <!-- Uncomment the following line if you want to use an icon -->
+                                                <!-- <i class="fas fa-/user-circle"></i> -->
+                                                <img class="svgInject" alt="Evara" src="/user-assets/imgs/theme/icons/user-profile.svg" style="height: 25px; width: 25px; margin-top: 2px;">
+                                              </a>
+                                              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                                                <a class="dropdown-item" href="/profile"><i class="material-icons md-perm_identity"></i> Profile</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item text-danger" href="/logout"><i class="material-icons md-exit_to_app"></i> Logout</a>
+                                              </div>
+                                            </li>
+                                          <% } else { %>
+                                            <!-- Displayed when the user is not logged in -->
+                                            <div class="single-mobile-header-info ml-25 pr-5">
+                                              <a href="/login">Login</a>
+                                            </div>
+                                          <% } %>
+                                           </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+ <!-- .......................................................................................................... -->
+
+               
+                    <section class="mt-50 mb-50">
+                        <div class="container">
+                            <div class="row">
+                                <!-- Address Section -->
+                                <div class="col-lg-8">
+                                    <div class="row align-items-start mt-30">
+                                        <% if (userAddress) { %>
+                                            <% userAddress.address.forEach((address)=> { %>
+                                                <div class="col-lg-6 mb-3">
+                                                    <div class="card">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="radio" id="addressRadio<%= address._id %>"
+                                                                name="selectedAddress" value="<%= address._id %>">
+                                                            <label class="form-check-label" for="addressRadio<%= address._id %>">Select Address</label>
+                                                        </div>
+                                                        <div class="card-header">
+                                                            <h5 class="mb-0"><%= address.addressType %></h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <address>
+                                                                 <%= address.name %><br />
+                                                                 <%= address.city %>,<br />
+                                                                 <%= address.landMark %> <br />
+                                                                 <%= address.state %>
+                                                            </address>
+                                                            <p> <%= address.pincode %></p>
+                                                            <p> <%= address.phone %></p>
+                                                            <p> <%= address.altPhone %></p>
+                                                            <div class="d-flex justify-content-between">
+                                                                <a href="/checkouteditAddress?id=<%= address._id %>" class="btn-small">Edit</a>
+                                                                <a href="/checkoutdeleteAddress?id=<%= address._id %>" class="btn-small">Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <% }) %>
+                                        <% } else { %>
+                                            <div class="col-lg-6 mb-3">
+                                                <div class="card">
+                                                    <div class="card-header">
+                                                        <h5 class="mb-0"></h5>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <address>No address</address>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                        <div class="col-lg-6 mb-3">
+                                            <a href="/checkoutaddAddress">
+                                                <button class="btn btn-primary w-100">Add address</button>
+                                            </a>
+                                        </div>
+                                       
+                                        
+							<select name="couponCode" id="couponCode" style="width: 15%x; height: 45px;" class="form-control">
+								<option value="" selected>Select a coupon</option>
+								<% coupons.forEach(coupon => { %>
+								  <option value="<%= coupon.code %>">coupon code: <%= coupon.code %> -<br> coupon Name: <%= coupon.name %></option>
+								<% }) %>
+                                <input type="text" id="couponInput" placeholder=" enter coupon code" style="width: 200px; height: 35px; margin-top: 10px;">
+
+							  </select>
+                              <input type="hidden" id="hiddenCoupon">
+                              <a style="display: inline-block; width: 150px; height: 45px; border: 1px solid rgb(244, 238, 238); text-align: center; line-height: 45px;background-color: #046963;color:white"
+                              onclick="applyCoupon('<%= userCart.totalPrice %>')" class="my-custom-button btn-outline-primary " type="button">
+                                 Apply Coupon</a>
+                                     
+                                
+
+                                 <a style="display: inline-block; width: 150px; height: 45px; border: 1px solid rgb(244, 238, 238); text-align: center; line-height: 45px;background-color: #6f1a1a;color:white"
+                                 onclick="deleteCoupon('<%= userCart.totalPrice %>')"
+                                 class="my-custom-button btn-outline-primary"
+                                 type="button">
+                                 Delete Coupon
+                                </a>
+                                
+                                            
+                                    </div>
+                                </div>
+                                  
+                                <div class="col-lg-4">
+                                    
+                                    <div class="order_review">
+                                        <div class="mb-20">
+                                            <h4>Your Orders</h4>
+                                        </div>
+                                        <div class="table-responsive order_table text-center">
+                                            
+                                            <table class="table mt-40">
+                                                
+                                                <thead>
+                                                    <tr>
+                                                        <th>Image</th>
+                                                        <th>Product</th>
+                                                        <th>Quantity</th>
+                                                        <th>Total</th>
+                                                    </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    <% if (userCart && userCart.items.length > 0) { %>
+                                                        <% userCart.items.forEach(item => { %>
+                                                            <tr>
+                                                                <td class="image product-thumbnail">
+                                                                    <img <% if (item.product && item.product.productImage[0]) { %>
+                                                                        src="/uploads/product-images/<%= item.product.productImage[0] %>"
+                                                                        alt="#">
+                                                                    <% } else { %>
+                                                                        <p>Image not available</p>  
+                                                                    <% } %>
+                                                                </td>
+                                                                <td>
+                                                                    <h5>
+                                                                        <a href="shop-product-full.html"><%=item.product.productName %></a>
+                                                                    </h5>
+                                                                </td>
+                                                                <td><%=item.quantity %></td>
+                                                                <td><%= item.product.salePrice * item.quantity %></td>
+                                                            </tr>
+                                                            
+                                                            
+                                                            <% }) %>
+                                                            <div class="ml-65">
+                                                                <button type="button" class="btn" onclick="placeOrder('<%=userCart._id%>')">Place Order</button>
+                                                            </div>
+                                                            <% } %>   
+
+                                                    <tr>
+                                                        <td colspan="4"></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="ml-150"> 
+                                            <table class="table mt-45">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>Fixed Charges</th>
+                                                        <td colspan="2" id="fixedcharges">
+                                                            <% if (locals.fixedCharges) { %>
+                                                                <%= locals.fixedCharges %>
+                                                            <% }else{ %>
+                                                                 0
+                                                                <% } %>
+                                                        </td>
+                                                    </tr>
+                                                   
+                                                    <th>Discount</th>
+                                                    <td colspan="2" id="discount">
+                                                        <% if (locals.offerPrice) { %>
+                                                            <%= locals.offerPrice %>
+                                                        <% }else{ %>
+                                                             0
+                                                            <% } %>
+                                                    </td>
+
+                                                    <tr>
+                                                        <th>Total for All Products</th>
+                                                        <td colspan="2" class="product-subtotal" id="totalValue">
+                                                            <span class="font-xl text-brand fw-900"><%= userCart.totalPrice %></span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                           
+                                           
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="payment_method mt-50">
+                                        
+                                        <div class="mb-25 ml-150">
+                                            <h5>Payment</h5>
+                                        </div>
+                                        <div class="custome-radio ml-150">
+                                            <input class="form-check-input payment" type="radio" value="cod" name="payment_option"
+                                                id="CashOnDelivery" checked="">
+                                            <label class="form-check-label" for="CashOnDelivery" data-bs-toggle="collapse"
+                                                data-target="#CashOnDelivery" aria-controls="CashOnDelivery">Cash on Delivery</label>
+                                        </div>
+                                        <div class="custome-radio ml-150">
+                                            <input class="form-check-input payment" required="" value="wallet" type="radio"
+                                                name="payment_option" id="wallet" checked="">
+                                            <label class="form-check-label" for="wallet" data-bs-toggle="collapse"
+                                                data-target="#wallet" aria-controls="wallet">Wallet</label>
+                                        </div>
+                                        <div class="custome-radio ml-150">
+                                            <input class="form-check-input payment" required="" value="online" type="radio"
+                                                name="payment_option" id="Razorpay" checked="">
+                                            <label class="form-check-label" for="Razorpay" data-bs-toggle="collapse"
+                                                data-target="#Razorpay" aria-controls="Razorpay">Razorpay</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ml-65">
+                        </div>
+                    </section>
+                    <!-- Include your JavaScript files at the end of the body tag -->
+                
+                
+                <!-- .............................footer............................................................. -->
+     <script>
+     async function placeOrder(userId, productId) {
+        
+    try {
+        
+        
+        
+        let address = $("input[name='selectedAddress']:checked").val();
+        let payment = $("input[name='payment_option']:checked").val();
+
+        const sum = document.getElementById("totalValue").textContent;
+        const numericValue = parseInt(sum.replace(/[^\d.]/g, ''));
+
+
+        if (!payment) {
+            Swal.fire({
+                title: 'NO PAYMENT FOUND!',
+                text: 'Please select your Payment.',
+                icon: 'error',
+                timer: 3000,
+            });
+            return;
+        } else if (!address) {
+            Swal.fire({
+                title: 'NO ADDRESS FOUND!',
+                text: 'Please select your address.',
+                width: '300px',
+                heightAuto: false,
+                customClass: {
+                    popup: 'custom-popup-class',
+                    content: 'custom-content-class'
+                },
+                icon: 'error',
+                timer: 3000,
+            });
+            return; // 
+        }
+
+        if (numericValue >= 1000 && payment === "cod") {
+          Swal.fire({
+        title: 'ORDER AMOUNT TOO HIGH!',
+        text: 'Cash on Delivery is not available for orders above Rs 1000.',
+        icon: 'error',
+        timer: 3000,
+     });
+     return;
+       }
+
+
+
+        $.ajax({
+            url: '/orderPlaced',
+            method: 'POST',
+            data: {
+                totalPrice: numericValue,
+                date: new Date(),
+                addressId: address,
+                payment: payment,
+                productId: productId,
+            },
+            async: true,
+            success: function (response) {
+                if (response.success) {
+                    document.getElementById('totalValue').innerHTML = response.totalPrice;
+                    
+                    if (response.order.payment === "cod") {
+                        Swal.fire({
+                            title: "Order success",
+                            text: "Order placed successfully",
+                            icon: "success",
+                            showConfirmButton: false,
+                            onClose: () => {
+                                setTimeout(() => {
+                                    window.location.href = "/";
+                                }, 500);
+                            }
+                        });
+                    } else if (response.order.payment === "online") {
+                        
+                        // For online payment, redirect to Razorpay
+                        initiateRazorpayPayment(response.razorpayOrder.id, numericValue,response.ordrId);
+                       
+                    
+                    }else if(response.order.payment === "wallet"){
+                    
+                    Swal.fire({
+                        title:"order success",
+                        text:"order placed successfully",
+                        icon:"success",
+                        showConfirmButton:false,
+                        timer:2000 ,
+                        onClose:()=>{
+                            window.location.href="/"
+                        
+                    }     
+
+                    })
+
+                }else{
+                    
+                    Swal.fire({
+                                    title: "Order failed",
+                                    text: "Money  is not enough",
+                                    icon: "error",
+                                    showConfirmButton: true,
+                                });
+
+                }
+                }
+                
+                else {
+                    Swal.fire({
+                        title: 'Error Occurred',
+                        text: response.error,
+                        icon: 'error',
+                        timer: 5000
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error("Error placing order:", error);
+                Swal.fire({
+                    title: 'Error Occurred',
+                    text: "Can't process order, an error occurred",
+                    icon: 'error',
+                    timer: 5000
+                });
+            }
+        });
+    } catch (error) {
+        console.error("Error placing order:", error);
+        Swal.fire({
+            title: 'Error Occurred',
+            text: "Can't process order, an error occurred",
+            icon: 'error',
+            timer: 5000
+        });
+    }
+}
+
+function initiateRazorpayPayment(order, numericValue,id) {
+   
+    let orderAmount = Math.round(numericValue * 100);
+    var options = {
+        "key": "rzp_test_HEutcRuJKrbqL3",
+        "amount": orderAmount,
+        "currency": "INR",
+        "name": "TimeSquad",
+        "description": "Transaction",
+        "image": "https://example.com/your_logo",
+        "order_id": order,
+        "handler": function (status) {
+            
+            verifyPayment(order, status, order);        
+
+        },
+        "prefill": {
+            "name": "User Name",
+            "email": "user@example.com",
+            "contact": "9999999999"
+        },
+        "theme": {
+            "color": "#FF00FF"
+        }
+    };
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+    rzp1.on("payment.failed", async function (response) {
+        try {
+        const orderId = id; 
+        
+        const responseData = { orderId: orderId }
+        const response = await fetch('/orderFailure', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ orderId: id }), // Wrap id in an object
+});
+
+       
+        handleFailure() 
+
+    } catch (error) {
+        console.error("Error updating order status:", error);
+        alert("An error occurred while updating order status");
+    }
+});
+
+
+    function handleFailure(description) {
+    
+
+     window.location.href="/orderFailedPage"
+}
+}
+
+
+
+
+
+
+
+
+
+function verifyPayment(order, payment) {
+    
+    
+    
+    $.ajax({
+        url: '/verifyPayment',
+        method: 'POST',
+        data: {
+            order: order,
+            payment: payment,
+            
+
+            
+        },
+        success: function (response) {
+            if (response.status) {
+                // Order successfully verified and saved
+                Swal.fire({
+                    title: "Order success",
+                    text: "Order placed successfully",
+                    icon: "success",
+                    showCancelButton: true,
+                    confirmButtonText: "View Orders",
+                    cancelButtonText: "Continue Shopping",
+                    reverseButtons: true
+                }).then(function (result) {
+                    if (result.value) {
+                        location.href = '/profile';
+                    } else if (result.dismiss === "cancel") {
+                        location.href = '/';
+                    }
+                });
+            } else {
+                // Payment verification failed
+                Swal.fire({
+                    title: 'Payment Verification Error',
+                    text: 'Payment verification failed. Please try again later.',
+                    icon: 'error',
+                    timer: 5000
+                });
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error verifying payment:", error);
+            Swal.fire({
+                title: 'Payment Verification Error',
+                text: 'Payment verification failed. Please try again later.',
+                icon: 'error',
+                timer: 5000
+            });
+        }
+    });
+}
+
+
+       function clearCart(userId) {
+        $.ajax({
+            url: '/clearCart',
+            method: 'POST',
+            data: { userId: userId },
+            success: function (response) {
+                console.log("Cart cleared successfully");
+            },
+            error: function (xhr, status, error) {
+                console.error("Error clearing cart:", error);
+            }
+        });
+    }
+
+
+
+    // apply coupon
+   
+    function applyCoupon(total){
+    
+        const coupon=document.getElementById("couponCode").value
+        document.getElementById("hiddenCoupon").value=coupon
+        const manuallyEnteredCoupon = document.getElementById("couponInput").value;
+
+        if ( manuallyEnteredCoupon === "") {
+            Swal.fire({
+            icon: 'error',
+            text: 'Please select or enter a coupon code'
+        });
+        return;
+    }
+        
+        $.ajax({
+            url:"/applyCoupon",
+            method:"post",
+            data:{
+                coupon,
+                total
+            },
+            success:(response)=>{
+                if(response.used==true){
+                    swal.fire("already used")
+                }else if(response.noCoupon==true){
+                    swal.fire("no coupon")
+                }else{
+                    
+                    
+                    const value = parseFloat(response.value)
+                
+                    const discount = parseInt(document.getElementById('discount').innerHTML);
+                    
+                    document.getElementById('totalValue').innerHTML = value
+                    
+                    document.getElementById('discount').innerHTML = discount+parseInt(response.offerPrice);
+                     swal.fire(" coupon Applied!!")
+                }
+            }
+        })
+    }
+
+    function deleteCoupon(total){
+        
+    
+    const coupon= document.getElementById("hiddenCoupon").value
+    
+    $.ajax({
+        url:`/deleteCoupon?id=${coupon}`,
+        method:"delete",
+        success:(response)=>{
+            
+        
+            console.log(response,"responseresponse");
+            if(response.status==true){
+
+                
+                document.getElementById('totalValue').innerHTML = total
+                 const discount = parseInt(document.getElementById('discount').innerHTML);
+                 document.getElementById('discount').innerHTML=discount-discount
+                 
+                    
+                    // document.getElementById('discount').innerHTML = discount
+
+                swal.fire(response.message)
+            }else{
+                
+                swal.fire("No coupon")
+            }
+        }
+    })
+}
+                </script>
+                
+                <!-- Vendor JS-->
+                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+                <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+                <script src="/user-assets/js/vendor/modernizr-3.6.0.min.js"></script>
+                <script src="/user-assets/js/vendor/jquery-3.6.0.min.js"></script>
+                <script src="/user-assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+                <script src="/user-assets/js/vendor/bootstrap.bundle.min.js"></script>
+                <script src="/user-assets/js/plugins/slick.js"></script>
+                <script src="/user-assets/js/plugins/jquery.syotimer.min.js"></script>
+                <script src="/user-assets/js/plugins/wow.js"></script>
+                <script src="/user-assets/js/plugins/jquery-ui.js"></script>
+                <script src="/user-assets/js/plugins/perfect-scrollbar.js"></script>
+                <script src="/user-assets/js/plugins/magnific-popup.js"></script>
+                <script src="/user-assets/js/plugins/select2.min.js"></script>
+                <script src="/user-assets/js/plugins/waypoints.js"></script>
+                <script src="/user-assets/js/plugins/counterup.js"></script>
+                <script src="/user-assets/js/plugins/jquery.countdown.min.js"></script>
+                <script src="/user-assets/js/plugins/images-loaded.js"></script>
+                <script src="/user-assets/js/plugins/isotope.js"></script>
+                <script src="/user-assets/js/plugins/scrollup.js"></script>
+                <script src="/user-assets/js/plugins/jquery.vticker-min.js"></script>
+                <script src="/user-assets/js/plugins/jquery.theia.sticky.js"></script>
+                <script src="/user-assets/js/plugins/jquery.elevatezoom.js"></script>
+                <script src="/user-assets/js/maind134.js?v=3.4"></script>
+                <script src="/user-assets/js/shopd134.js?v=3.4"></script>
+            
+                </body>
+                </html>
+                             

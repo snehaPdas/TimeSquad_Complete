@@ -1,0 +1,505 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+
+<!-- Mirrored from wp.alithemes.com/html/evara/evara-backend/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 01 Aug 2021 15:32:35 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title> Admin</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="admin-assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link href="/admin-assets/css/main.css" rel="stylesheet" type="text/css" />
+   <!-- Include SweetAlert CSS and JS files from CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
+
+</head>
+
+<body>
+    <div class="screen-overlay"></div>
+    <aside class="navbar-aside" id="offcanvas_aside">
+        <div class="aside-top">
+            <a href="index.html" class="brand-wrap">
+                <img src="/admin-assets/imgs/theme/TimeSquad logo.png" class="logo" alt="Evara Dashboard">
+            </a>
+            <div>
+                <button class="btn btn-icon btn-aside-minimize"> <i class="text-muted material-icons md-menu_open"></i> </button>
+            </div>
+        </div>
+        <nav>
+            <ul class="menu-aside">
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin"> <i class="icon material-icons md-home"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- User -->
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/user"> <i class="icon material-icons md-person"></i>
+                        <span class="text">Customers</span>
+                    </a>
+
+                </li>
+                <!-- order -->
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/orderList"> <i class="icon material-icons md-shopping_cart"></i>
+                        <span class="text">Orders</span>
+                    </a>
+
+                </li>
+
+
+                
+                <!-- Products -->
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/products"> <i class="icon material-icons md-shopping_bag"></i>
+                        <span class="text">Products</span>
+                    </a>
+                </li>
+                <!-- <a href="">Hiii</a> -->
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/category"> <i class="icon material-icons md-map"></i>
+                        <span class="text">Category</span>
+                    </a>
+
+                </li>
+                  
+             
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/addProducts"> <i class="icon material-icons md-add_box"></i>
+                        <span class="text">Add product</span>
+                    </a>
+                  
+                </li>
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/coupon"> <i class="icon material-icons md-class"></i>
+                        <span class="text">Coupon</span> </a>
+                </li>
+                   
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/offer"> <i class="icon material-icons md-description"></i>
+                        <span class="text">Offer</span> </a>
+                </li>
+
+                <li class="menu-item">
+                    <a class="menu-link" href="/admin/salesReport"> <i class="icon material-icons md-description"></i>
+                        <span class="text">Sales Report</span> </a>
+                </li>
+             
+            </ul>
+            <hr>
+            <br>
+            <br>
+        </nav>
+    </aside>
+    <main class="main-wrap">
+        <header class="main-header navbar">
+            <div class="col-search">
+               
+            </div>
+            <div class="col-nav">
+                <button class="btn btn-icon btn-mobile me-auto" data-trigger="#offcanvas_aside"> <i class="material-icons md-apps"></i> </button>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon" href="#">
+                            <i class="material-icons md-notifications animation-shake"></i>
+                            <span class="badge rounded-pill">4</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-icon darkmode" href="#"> <i class="material-icons md-nights_stay"></i> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="requestfullscreen nav-link btn-icon"><i class="material-icons md-cast"></i></a>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownLanguage" aria-expanded="false"><i class="material-icons md-public"></i></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownLanguage">
+                            <a class="dropdown-item text-brand" href="#"><img src="admin-assets/imgs/theme/flag-us.png" alt="English">English</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-fr.png" alt="Français">Français</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-jp.png" alt="Français">日本語</a>
+                            <a class="dropdown-item" href="#"><img src="admin-assets/imgs/theme/flag-cn.png" alt="Français">中国人</a>
+                        </div>
+                    </li>
+                    <li class="dropdown nav-item">
+                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false"> <img class="img-xs rounded-circle" src="admin-assets/imgs/people/avatar2.jpg" alt="User"></a>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                            <a class="dropdown-item" href="#"><i class="material-icons md-perm_identity"></i>Edit Profile</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-settings"></i>Account Settings</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-account_balance_wallet"></i>Wallet</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-receipt"></i>Billing</a>
+                            <a class="dropdown-item" href="#"><i class="material-icons md-help_outline"></i>Help center</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger" href="/admin/logout"><i class="material-icons md-exit_to_app"></i>Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+
+        <style>
+            .error-message {
+                color: red;
+                margin-top: 5px;
+                font-size: 14px; /* Adjust font size as needed */
+            }
+    
+        </style>
+        
+
+
+
+
+        <!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        <section class="content-main">
+            <div class="row">
+                <div class="col-9">
+                    <div class="content-header">
+                        <h2 class="content-title">Edit Product</h2>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card mb-4">
+                        <div class="card-body">
+    
+                            <form method="post" action="/admin/editProduct/<%= product._id %>" enctype="multipart/form-data" onsubmit="return validateForm()">
+                                <div class="mb-4">
+                                    <label for="product_name" class="form-label">Product Name</label>
+                                    <input type="text" placeholder="Type here" name="productName"class="form-control border" id="product_name" value="<%= product.productName %>"  onclick="clrproductname()">
+                                    <div id="productName-error" class="error-message"></div>
+                                </div>
+                                <!-- <div class="col-lg-4 mb-4">
+                                    <label class="form-label">Brand</label>
+                                    <select class="form-select border" name="brand">
+                                    </select>
+    
+    
+                                </div> -->
+                                <div class="mb-4">
+                                    <label class="form-label">Description</label>
+                                    <textarea placeholder="Type here" name="description" class="form-control border"
+                                       id="des_cription" rows="4"> <%=product.description%></textarea>
+                                    <div id="description-error" class="error-message"></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Regular price</label>
+                                            <input placeholder="$" name="regularPrice" id="regular-Price"  type="text"
+                                                class="form-control border" value="<%=product.regularPrice%>"onclick="clrprice()">
+                                                <div id="regularPrice-error" class="error-message"></div>
+    
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Sale price</label>
+                                            <input placeholder="$" name="salePrice"  id="sale-Price"    type="text" class="form-control border" value="<%=product.salePrice%>" onclick="clrsaleprice()">
+                                            <div id="salePrice-error" class="error-message"></div>
+    
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Quantity</label>
+                                            <input placeholder="" name="quantity" type="text" id="Quan-tity" class="form-control border" value="<%=product.quantity%>"   onclick="clrquantity()">
+                                            <div id="quantity-error" class="error-message"></div>
+    
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                   
+                                    <!-- <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <label class="form-label">Color</label>
+                                            <input placeholder="" name="color" type="text" class="form-control border"   value="<%=product.color%>"  onclick="clrcolor()" >
+                                            <div id="color-error" class="error-message"></div>
+                                        </div>
+                                    </div> -->
+                                   
+                                </div>
+                                <div class="card mb-4">
+                                    <div class="card-body">
+                                        <div class="row gx-2">
+                                            <div class="col-sm-6 mb-3">
+                                                <label class="form-label">Category</label>
+                                                <select class="form-select border" style="width: 150px;" name="category"      onclick="clrcategory()">
+                                                    <div id="category-error" class="error-message"></div>
+                                                
+                                                    <option value="<%= product.category.name %>" >
+                                                        <%= product.category.name %>
+                                                    </option>
+                                                    <% for (let i = 0; i < cat.length; i++) { %>
+                                                        <% if (cat[i].isListed && cat[i].name!== product.category.name) { %>
+                                                            <option value="<%= cat[i].name %>" >
+                                                                <%= cat[i].name %>
+                                                            </option>
+                                                        <% } %>
+                                                    <% } %>    
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card mb-2">
+                                    <div class="card-header">
+                                        <h4>Choose images</h4>
+                                    </div>
+                                    <div class="border row">
+                                        <div id="addedImagesContainer" class="thumbnails-container">
+                                            
+                                                <% for (let i=0; i < product.productImage.length; i++) { %>
+                                                    <div class="col-md-2 mb-2">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <img class="rounded" style="width: 50px; height: 60px;"
+                                                                    src="/uploads/product-images/<%= product.productImage[i] %>"
+                                                                    alt="image" data-filename="<%= product.productImage[i] %>">
+                                                                <span class="delete-icon" style="cursor: pointer;"
+                                                                    onclick="deleteImage('<%= product._id %>', '<%= product.productImage[i] %>')">❌</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <% } %>
+                                           
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="input-upload">
+                                            <img src="assets/imgs/theme/upload.svg" alt="">
+                                             <input class="form-control border" name="images" id="imageInput" type="file" multiple> 
+                                                <!-- <div id="image-error" class="error-message"></div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button class="btn btn-md rounded font-sm hover-up" type="submit" onclick="validateAndSubmit()">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+    
+    
+    
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+        <style>
+            .thumbnails-container {
+                display: flex;
+                overflow-x: auto;
+            }
+    
+            .thumbnail {
+                margin-right: 10px;
+    
+            }
+        </style>
+    
+        <script>
+    
+            const selectedImages = [];
+    
+            document.getElementById("imageInput").addEventListener("change", handleFileSelect);
+    
+            function handleFileSelect(event) {
+    
+                const addedImagesContainer = document.getElementById("addedImagesContainer");
+    
+                // addedImagesContainer.innerHTML = "";
+    
+                 const files = event.target.files;
+    
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+    
+    
+                    selectedImages.push(file);
+    
+    
+                    const thumbnail = document.createElement("div");
+                    thumbnail.classList.add("thumbnail");
+    
+    
+                    const img = document.createElement("img");
+                    img.src = URL.createObjectURL(file);
+                    img.alt = "thumbnail";
+    
+                    img.style.width = "60px";
+                    img.style.height = "auto";
+    
+    
+                    const removeIcon = document.createElement("span");
+                    removeIcon.classList.add("remove-icon");
+                    removeIcon.innerHTML = "&times;";
+    
+                    removeIcon.addEventListener("click", function () {
+    
+                        const index = selectedImages.indexOf(file);
+                        if (index !== -1) {
+                            selectedImages.splice(index, 1);
+                        }
+    
+                        thumbnail.remove();
+                    });
+    
+                    thumbnail.appendChild(img);
+                    thumbnail.appendChild(removeIcon);
+                    addedImagesContainer.appendChild(thumbnail);
+                }
+            }
+    
+    
+    
+    
+            function deleteImage(productId, filename) {
+                
+                deleteSingleImage(productId, filename);
+            }
+    
+            function deleteSingleImage(productId, filename) {
+                
+                fetch("/admin/deleteImage", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ productId, filename }),
+                })
+                    .then((response) => location.reload())
+                    .then((data) => {
+                        
+                        if (data.success) {
+                            removeImage(filename);
+                    
+                        } else {
+                            console.error("Error deleting image:", data.error);
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                    });
+            }
+    
+            // remove the deleted image
+            function removeImage(filename) {
+                
+                const imageElement = document.querySelector(`[data-filename="${filename}"]`);
+    
+                if (imageElement) {
+                    imageElement.closest('.col-md-12').remove();
+                }
+            }
+
+// //////////////////////////////////////
+
+function validateAndSubmit() {
+
+    
+        if (validateForm()) {
+            
+            
+            document.forms.submit(); 
+        }
+        return false; 
+    }
+
+        function validateForm() {
+            
+            resetErrorMessages();
+
+            var isValid = true;
+
+            var productName = document.getElementById("product_name").value;
+            var description=document.getElementById("des_cription").value;
+            var regularPrice = document.getElementById("regular-Price").value;
+            var salePrice = document.getElementById("sale-Price").value;
+            var quantity = document.getElementById("Quan-tity").value;
+
+            // Check if inputs are not empty
+            if (productName === "") {
+                displayErrorMessage("productName-error", "Product Name is required");
+                isValid = false;
+            }
+
+            if (description.trim() === "") {
+            displayErrorMessage("description-error", "Product details is required");
+            isValid = false;
+        }
+
+// Check if prices are positive numbers
+            if (isNaN(regularPrice) || regularPrice <= 0) {
+                displayErrorMessage("regularPrice-error", "Regular price must be a positive number");
+                isValid = false;
+            }
+
+            if (isNaN(salePrice) || salePrice <= 0) {
+                displayErrorMessage("salePrice-error", "Sale price must be a positive number");
+                isValid = false;
+            }
+
+            // Check if sale price is less than regular price
+            if (!/^[1-9]\d*$/.test(salePrice) || parseFloat(salePrice) >= parseFloat(regularPrice)) {
+            displayErrorMessage("salePrice-error", "Sale price must be less than Regular price and also positive number");
+            isValid = false;
+            }  
+
+
+            // Check if quantity is a positive integer
+            if (!/^[1-9]\d*$/.test(quantity)) {
+                displayErrorMessage("quantity-error", "Quantity must be a positive integer");
+                isValid = false;
+            }
+
+            // Additional checks can be added for other fields if needed
+
+            return isValid;
+        }
+
+        function displayErrorMessage(elementId, message) {
+            var errorElement = document.getElementById(elementId);
+            errorElement.innerText = message;
+            errorElement.style.display = "block";
+        }
+
+        function resetErrorMessages() {
+            var errorElements = document.querySelectorAll(".error-message");
+            errorElements.forEach(function (element) {
+                element.innerText = "";
+                element.style.display = "none";
+            });
+        }
+
+
+    </script>
+
+
+
+
+<script src="admin-assets/js/vendors/jquery-3.6.0.min.js"></script>
+<script src="admin-assets/js/vendors/bootstrap.bundle.min.js"></script>
+<script src="admin-assets/js/vendors/select2.min.js"></script>
+<script src="admin-assets/js/vendors/perfect-scrollbar.js"></script>
+<script src="admin-assets/js/vendors/jquery.fullscreen.min.js"></script>
+<script src="admin-assets/js/vendors/chart.js"></script>
+<script src="admin-assets/js/main.js" type="text/javascript"></script>
+<script src="admin-assets/js/custom-chart.js" type="text/javascript"></script>
+</body>
+</html>              
+
+    

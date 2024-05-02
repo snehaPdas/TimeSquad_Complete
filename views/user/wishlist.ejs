@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Time Squad</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/user-assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/user-assets/css/maind134.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+ <style>
+        .oval-btn {
+        border-radius: 20px; 
+        }
+</style>
+
+</head>
+<body>
+ <div class="header-middle header-middle-ptb-1 d-none d-lg-block">
+                <div class="container">
+                    <div class="header-wrap">
+                        <div class="logo logo-width-1">
+                            <a href="/"><img src="/user-assets/imgs/theme/Logo.png" alt="logo"></a>
+                        </div>
+                    
+                            <div class="main-menu main-menu-padding-1 main-menu-lh-2 d-none d-lg-block " style="padding-left: 260px;">
+                                <nav>
+                                    <ul>
+                                        <li><a  href="/">Home</i></a>
+                                           
+                                        </li>
+                                        <li>
+                                            <a href="page-about.html">About</a>
+                                        </li>
+                                        <li><a href="/shop">Shop</i></a>
+                                           
+                                        </li>
+                                        <li>
+                                            <a href="page-contact.html">Contact</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="header-action-right" style="padding-left: 300px;">
+                                <div class="header-action-2">
+                                    <div class="header-action-icon-2">
+                                        <a href="/wishlist">
+                                            <img class="svgInject" alt="Evara" src="/user-assets/imgs/theme/icons/icon-heart.svg">
+                                         </a>
+                                    </div>
+                                    <div class="header-action-icon-2">
+                                        <a class="mini-cart-icon" href="/cart">
+                                        <img alt="Evara" src="/user-assets/imgs/theme/icons/icon-cart.svg">
+                                         </a>
+                                        <% if (locals.user) { %>
+                                        <li class="dropdown nav-item">
+                                        <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#" id="dropdownAccount" aria-expanded="false">
+                                        <img class="svgInject" alt="Evara" src="/user-assets/imgs/theme/icons/user-profile.svg" style="height: 25px; width: 25px; margin-top: 2px;">
+                                              </a>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownAccount">
+                                            <a class="dropdown-item" href="/profile"><i class="material-icons md-perm_identity"></i> Profile</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item text-danger" href="/logout"><i class="material-icons md-exit_to_app"></i> Logout</a>
+                                            </div>
+                                            </li>
+                                          <% } else { %>
+                                        <div class="single-mobile-header-info ml-25 pr-5">
+                                        <a href="/login">Login</a>
+                                        </div>
+                                          <% } %>
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                         <!-- ..........header end -->
+                         <main class="main">
+                            <div class="page-header breadcrumb-wrap">
+                                <div class="container">
+                                    <div class="breadcrumb">
+                                        <a href="/" rel="nofollow">Home</a>
+                                        <!-- <span></span> Shop -->
+                                        <span></span> Wishlist
+                                    </div>
+                                </div>
+                            </div>
+                            <section class="mt-50 mb-50">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="table-responsive">
+                                                <table class="table shopping-summery text-center">
+                                                    <thead>
+                                                        <tr class="main-heading">
+                                                            <th scope="col" colspan="2">Product</th>
+                                                            <th scope="col">Price</th>
+                                                            <th scope="col">Stock Status</th>
+                                                            <th scope="col">Action</th>
+                                                            <th scope="col">Remove</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <% if(wishlist&&wishlist.products.length>0){ %>
+                                                            <% wishlist.products.forEach(item=>{ %>
+                                                        <tr >
+                                                            <td class="image product-thumbnail">
+                                                                <% if (item.itemId&& item.itemId.productImage[0]) { %>
+                                                                <img src="/uploads/product-images/<%= item.itemId.productImage[0] %>" alt="#"></td>
+                                                                <%} %>
+                                                                    
+                                                                    
+                                                            <td class="product-des product-name">
+                                                                <h5 class="product-name"><a href="shop-product-right.html"><%= item.itemId.productName %></a></h5>
+                                                                
+                                                            </td>
+                                                            <td class="price" data-title="Price"><span><%=item.itemId.salePrice %></span></td>
+                                                            <td class="text-center" data-title="Stock">
+                                                                <span class="color3 font-weight-bold">
+                                                                    <%if(item.itemId.quantity>0){%>
+                                                                        <p>In Stock</p>
+                                                                        <%}else{%>
+                                                                            Out Of Stock!!
+
+                                                                    <%}%>
+                                                                </span>
+                                                            </td>
+                                                            <td class="text-right" data-title="Cart">
+                                                                <button class="btn btn-success" onclick="addToCart('<%=item.itemId._id %>')" data-prod-id="<%= item.itemId._id %>">Add to
+                                                                    Cart</button>
+                                                            </td>
+                                                            <td class="action" data-title="Remove"><a href="#" onclick="confirmDelete('<%=item.itemId._id%>')"><i class="fi-rs-trash"></i></a></td>
+
+                                                        </tr>
+                                                        
+                                                        
+                                                        <% }) %>
+                                                        <% }else{ %>
+                                                            <tr>
+                                                                <td colspan="2" class="text-center"><br>
+                                                                <p class="lead mb-4">No item Found in WishList</p>
+                                                            </td> 
+                                                        </tr>
+                                                            <% } %>
+                                                        
+                                                    </tbody>
+                                                    
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </main>
+
+
+
+
+<!-- ................................................................................................................... -->
+<section class="newsletter p-30 text-white wow fadeIn animated">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 mb-md-3 mb-lg-0">
+                <div class="row align-items-center">
+                    <div class="col flex-horizontal-center">
+                        
+                        <h4 class="font-size-20 mb-0 ml-3"></h4>
+                    </div>
+                    <div class="col my-4 my-md-0 des">
+                        <h5 class="font-size-15 ml-4 mb-0"> <strong></strong></h5>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</section>
+<div class="container pb-20 wow fadeIn animated">
+                    <div class="row">
+                        <div class="col-12 mb-20">
+                            <div class="footer-bottom"></div>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="float-md-left font-sm text-muted mb-0"><strong class="text-brand"></strong> </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="text-lg-end text-start font-sm text-muted mb-0">
+                                 <a href="http://alithemes.com/" target="_blank"></a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                </footer>
+                <!-- --------------------------------------===================== -->
+                    <script>
+       function addToCart(prodId) {
+        var quantity = 1;
+        $(`button[data-prod-id="${prodId}"]`).prop('disabled', true);
+        
+        $.ajax({
+            url: `/addtoCart`,
+            method: "post",
+            data: {
+                quantity: quantity,
+                id:prodId
+            },
+            success: (res) => {
+                if (res.status === true) {
+                    
+                    Swal.fire({
+                        title: 'Added to Cart!',
+                        text: 'Continue Shopping',
+                        icon: 'success',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                
+                } else if (res.status === "out of stock") {
+                            Swal.fire({
+                                title: 'Stock!!',
+                                text: "The product is out of stock",
+                                icon: 'error',
+                                timer: 2000,
+                            })
+                        }
+                  else {
+                    $(`button[data-prod-id="${prodId}"]`).prop('disabled', false);
+                    Swal.fire({
+                        title: 'You need to Login first',
+                        text: 'Continue Shopping',
+                        icon: 'warning',
+                        timer: 2000,
+                        showConfirmButton: false
+                    }).then(() => { window.location.href = '/login' });
+                }
+            },
+            error: (err) => {
+            
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'An error occurred while processing your request.',
+                    icon: 'error',
+                    timer: 2000,
+                });
+            }
+        });
+    }
+    
+
+    function confirmDelete(itemId) {
+    swal.fire({
+        title: "Are you sure you want to delete?",
+        text: "Once deleted, you will not be able to recover this item!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            
+            window.location.href = "/deletewishlist?id=" + itemId;
+        } else {
+            
+            swal("Your item is safe!");
+        }
+    });
+}
+
+
+
+                </script>
+<!-- .............................................................. -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.all.min.js"></script>
+<script src="/user-assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="/user-assets/js/vendor/bootstrap.bundle.min.js"></script>
+<script src="/user-assets/js/plugins/slick.js"></script>
+<script src="/user-assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="/user-assets/js/plugins/wow.js"></script>
+<script src="/user-assets/js/plugins/jquery-ui.js"></script>
+<script src="/user-assets/js/plugins/perfect-scrollbar.js"></script>
+<script src="/user-assets/js/plugins/magnific-popup.js"></script>
+<script src="/user-assets/js/plugins/select2.min.js"></script>
+<script src="/user-assets/js/plugins/waypoints.js"></script>
+<script src="/user-assets/js/plugins/counterup.js"></script>
+<script src="/user-assets/js/plugins/jquery.countdown.min.js"></script>
+<script src="/user-assets/js/plugins/images-loaded.js"></script>
+<script src="/user-assets/js/plugins/isotope.js"></script>
+<script src="/user-assets/js/plugins/scrollup.js"></script>
+<script src="/user-assets/js/plugins/jquery.vticker-min.js"></script>
+<script src="/user-assets/js/plugins/jquery.theia.sticky.js"></script>
+<script src="/user-assets/js/plugins/jquery.elevatezoom.js"></script>
+
+<!-- Use the latest version of jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include your template JS files -->
+<script src="/user-assets/js/maind134.js?v=3.4"></script>
+<script src="/user-assets/js/shopd134.js?v=3.4"></script>
+
+                </body>
+                </html>
+                

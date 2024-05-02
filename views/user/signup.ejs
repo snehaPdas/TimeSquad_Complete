@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Time Squad</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.svg">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/assets/css/main.css?v=3.4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- Add jQuery library -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+</head>
+
+<main class="main">
+    <div class="page-header breadcrumb-wrap">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/" rel="nofollow">Home</a>
+                <span></span>
+                <a href="/login">Login</a>
+                    <!-- <a href="/signup">Register</a> -->
+            </div>
+        </div>
+    </div>
+    <section class="pt-150 pb-150">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 m-auto">
+                    <div class="row">
+
+<div class="col-lg-6">
+    <div class="login_wrap widget-taber-content p-30 background-white border-radius-5">
+        <div class="padding_eight_all bg-white">
+            <div class="heading_s1">
+                <h3 class="mb-30">Create an Account</h3>
+            </div>
+
+            <%if(locals.message){%>
+            
+                <div class="alert alert-danger">
+     
+                 <%=message %>
+                 </div>
+                <%}%>
+            
+            <form method="post" action="/signup" id="regForm" >
+                <div class="form-group">
+                    <input type="text" required="" name="name" placeholder="Username" id="typeNameX">
+                    <div id="name-error" class="error text-danger"></div>
+                </div>
+                <div class="form-group">
+                    <input type="text" required="" name="email" placeholder="Email" id="typeEmailX">
+                    <div id="email-error" class="error text-danger"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" required="" name="phone" placeholder="Phone Number" id="typeMobileX">
+                    <div id="Phone-error" class="error text-danger"></div>
+                </div>
+
+                <div class="form-group">
+                    <input required="" type="password" name="password" placeholder="Password" id="typePasswordX">
+                    <div id="password-error" class="error text-danger"></div>
+                </div>
+                
+
+                  <div class="form-group">
+                    <input required="" type="password" name="cpassword" placeholder="Confirm password" id="typeConfirmPasswordX">
+                    <div id="cpassword-error" class="error text-danger"></div>
+                </div> 
+
+                <div class="login_footer form-group">
+                    <div class="chek-form">
+                        <div class="custome-checkbox">
+                            <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox12" value="">
+                        </div>
+                    </div>
+        
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login" >Submit &amp; Register</button>
+                </div>
+
+            </form>
+            <div class="divider-text-center mt-15 mb-15">
+                <span> or</span>
+            </div>
+            <!-- <ul class="btn-login list_none text-center mb-15">
+                <li><a href="#" class="btn btn-facebook hover-up mb-lg-0 mb-sm-4">Login With Facebook</a></li>
+                <li><a href="#" class="btn btn-google hover-up">Login With Google</a></li>
+            </ul> -->
+            <div class="text-muted text-center">Already have an account? <a href="/login">LOGIN now</a></div>
+        </div>
+    </div>
+</div>
+</main>
+
+
+
+<script>
+    const emailid = document.getElementById('typeEmailX');
+        const nameid = document.getElementById('typeNameX');
+        const mobileid = document.getElementById('typeMobileX');
+        const passid = document.getElementById('typePasswordX');
+        const confirmPassid = document.getElementById('typeConfirmPasswordX');
+
+        const error1 = document.getElementById('name-error');
+        const error2 = document.getElementById('email-error');
+        const error3 = document.getElementById('Phone-error');
+        const error4 = document.getElementById('password-error');
+        const error5 = document.getElementById('cpassword-error');
+
+        const regformform = document.getElementById('regForm');
+
+        function emailvalidate() {
+            const emailval = emailid.value;
+            const emailpattern = /^([a-zA-Z0-9._-]+)@([a-zA-Z.-]+).([a-zA-z]{2,4})$/;
+            if (!emailpattern.test(emailval)) {
+                error2.style.display = "block";
+                error2.innerHTML = "Invalid Format!!";
+            } else {
+                error2.style.display = "none";
+                error2.innerHTML = "";
+            }
+        }
+
+        function passvalidate() {
+            const passval = passid.value;
+            const alpha = /[a-zA-Z]/;
+            const digit = /\d/;
+            if (passval.length < 8) {
+                error4.style.display = "block";
+                error4.innerHTML = "Must have at least 8 characters";
+            } else if (!alpha.test(passval) || !digit.test(passval)) {
+                error4.style.display = "block";
+                error4.innerHTML = "Should contain Numbers and Alphabets!!";
+            } else {
+                error4.style.display = "none";
+                error4.innerHTML = "";
+            }
+        }
+        
+
+        // function mobvalidate() {
+        //     const mobval = mobileid.value;
+        //     if (mobval.trim() === "") {
+        //         error3.style.display = "block";
+        //         error3.innerHTML = "Please Enter a valid Mobile Number.";
+        //     } else if (mobval.length !== 10) {
+        //         error3.style.display = "block";
+        //         error3.innerHTML = "Please Enter exactly 10 digits Only.";
+        //     } else {
+        //         error3.style.display = "none";
+        //         error3.innerHTML = "";
+        //     }
+        // }
+
+
+
+        function mobvalidate() {
+    const mobval = mobileid.value;
+    if (mobval.trim() === "") {
+        error3.style.display = "block";
+        error3.innerHTML = "Please enter a valid mobile number.";
+    } else if (mobval.length !== 10) {
+        error3.style.display = "block";
+        error3.innerHTML = "Please enter exactly 10 digits only.";
+    } else if (mobval.charAt(0) === '0') {
+        error3.style.display = "block";
+        error3.innerHTML = "Mobile number should not start with zero.";
+    } else if (/^0+$/.test(mobval)) {
+        error3.style.display = "block";
+        error3.innerHTML = "Mobile number should not consist of all zeroes.";
+    } else if (/^(\d)\1+$/.test(mobval)) {
+        error3.style.display = "block";
+        error3.innerHTML = "Mobile number should not consist of repeating patterns.";
+    } else {
+        error3.style.display = "none";
+        error3.innerHTML = "";
+    }
+}
+
+    //  function namevalidate() {
+    //         const nameval = nameid.value;
+    //         if (nameval.trim() === "") {
+    //             error1.style.display = "block";
+    //             error1.innerHTML = "Please Enter a valid Name.";
+    //         } else {
+    //             error1.style.display = "none";
+    //             error1.innerHTML = "";
+    //         }
+    //     }
+
+
+    function namevalidate() {
+    const nameval = nameid.value;
+    const specialChars = /^[A-Za-z]+(?: [A-Za-z]+)*$/;
+
+    if (nameval.trim() === "") {
+        error1.style.display = "block";
+        error1.innerHTML = "Please enter a valid name.";
+    } else if (!specialChars.test(nameval)) {
+        error1.style.display = "block";
+        error1.innerHTML = "Name should only contain alphabetic characters.";
+    } else {
+        error1.style.display = "none";
+        error1.innerHTML = "";
+    }
+}
+
+    
+    function confirmPassvalidate() {
+    const confirmPassval = confirmPassid.value;
+    const passval = passid.value;
+    
+    if (confirmPassval !== passval) {
+        error5.style.display = "block";
+        error5.innerHTML = "Password and Confirm Password do not match.";
+    } else {
+        error5.style.display = "none";
+        error5.innerHTML = "";
+    }
+}
+
+        emailid.addEventListener('blur', emailvalidate);
+        nameid.addEventListener('blur', namevalidate);
+        mobileid.addEventListener('blur', mobvalidate);
+        passid.addEventListener('blur', passvalidate);
+        confirmPassid.addEventListener('blur', confirmPassvalidate);
+        regformform.addEventListener('submit', function (e) {
+            emailvalidate();
+            namevalidate();
+            mobvalidate();
+            passvalidate();
+            confirmPassvalidate();
+
+            // Check if any error messages are present
+            if (error1.innerHTML || error2.innerHTML || error3.innerHTML || error4.innerHTML || error5.innerHTML) {
+                e.preventDefault(); // Prevent form submission if there are errors
+            }
+        });
+    </script>
+    
+
+<script src="assets/js/vendor/modernizr-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
+<script src="assets/js/vendor/jquery-migrate-3.3.0.min.js"></script>
+<script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
+<script src="assets/js/plugins/slick.js"></script>
+<script src="assets/js/plugins/jquery.syotimer.min.js"></script>
+<script src="assets/js/plugins/wow.js"></script>
+<script src="assets/js/plugins/jquery-ui.js"></script>
+<script src="assets/js/plugins/perfect-scrollbar.js"></script>
+<script src="assets/js/plugins/magnific-popup.js"></script>
+<script src="assets/js/plugins/select2.min.js"></script>
+<script src="assets/js/plugins/waypoints.js"></script>
+<script src="assets/js/plugins/counterup.js"></script>
+<script src="assets/js/plugins/jquery.countdown.min.js"></script>
+<script src="assets/js/plugins/images-loaded.js"></script>
+<script src="assets/js/plugins/isotope.js"></script>
+<script src="assets/js/plugins/scrollup.js"></script>
+<script src="assets/js/plugins/jquery.vticker-min.js"></script>
+<script src="assets/js/plugins/jquery.theia.sticky.js"></script>
+<script src="assets/js/plugins/jquery.elevatezoom.js"></script>
+<!-- Template  JS -->
+<script src="./assets/js/main.js?v=3.4"></script>
+<script src="./assets/js/shop.js?v=3.4"></script>   
+</body>
+</html>
