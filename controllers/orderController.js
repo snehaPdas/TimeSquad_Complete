@@ -570,7 +570,7 @@ const getOrderListPageAdmin = async (req, res) => {
     let totalPages = Math.ceil(orders.length / 3);
     const currentOrder = orders.slice(startIndex, endIndex);
 
-    res.render("Admin/orderlist", {
+    res.render("Admin/orderList", {
       orders: currentOrder,
       totalPages,
       currentPage,
