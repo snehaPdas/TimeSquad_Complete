@@ -593,7 +593,7 @@ const getOrderDetailsPageAdmin = async (req, res) => {
     } else {
       findOrder.createdOn = null;
     }
-    res.render("Admin/orderDetails", { orders: findOrder, orderId });
+    res.render("admin/orderDetails", { orders: findOrder, orderId });
   } catch (error) {
     console.log(error);
   }
@@ -618,7 +618,7 @@ const changeOrderStatus = async (req, res) => {
         { $set: { deliveryDate: deliveredDate } }
       );
     }
-    res.redirect("/Admin/orderList");
+    res.redirect("/admin/orderList");
   } catch (error) {
     console.log(error.message);
   }
@@ -637,7 +637,7 @@ const retryPayment = async (req, res) => {
     console.log("yes");
     const orderId = req.body.orderid;
     const order = await Order.findById(orderId);
-    console.log("id==========>", orderId);
+    
     await Order.updateOne(
       { _id: orderId },
       { $set: { orderStatus: "pending" } }

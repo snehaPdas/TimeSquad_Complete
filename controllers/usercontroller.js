@@ -366,7 +366,7 @@ const filterByPrice = async (req, res) => {
     let endIndex = startIndex + itemsPerPage;
     let totalPages = Math.ceil(findProducts.length / itemsPerPage);
     const currentProduct = findProducts.slice(startIndex, endIndex);
-    res.render("User/shop", {
+    res.render("user/shop", {
     user: user, 
       product: currentProduct,
        category: categories,
@@ -398,7 +398,7 @@ const findProducts = await Product.find({isBlocked:false
     let totalPages = Math.ceil(totalItems / itemsPerPage);
   const  currentProduct = findProducts.slice(startIndex, endIndex);
 
-    res.render("User/shop", {
+    res.render("user/shop", {
       user: user,
       product: currentProduct,
       category: category,
@@ -447,7 +447,7 @@ const filterProduct = async (req, res) => {
       let totalPages = Math.ceil(findProducts.length / 6);
       const currentProduct = findProducts.slice(startIndex, endIndex);
 
-      res.render("User/shop", {
+      res.render("user/shop", {
           user: user,
           product: currentProduct,
           category: categories,
