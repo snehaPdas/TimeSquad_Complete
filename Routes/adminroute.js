@@ -19,7 +19,6 @@ const { isAdmin } = require("../Helpers/middleware")
 
 
 
-
 //admin
 
 route.get("/",isAdmin,adminController.getDashboard)
@@ -52,7 +51,7 @@ route.get("/logout", isAdmin, categoryController.getLogout)
 
 //multer
 const multer = require("multer")
-const storage = require("../helpers/multer")
+const storage = require("../Helpers/multer")
 const upload = multer({ storage: storage })
 route.use("/public/uploads", express.static("/public/uploads"))
 
