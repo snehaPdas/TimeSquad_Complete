@@ -11,9 +11,9 @@ const getCartPage = async (req, res) => {
       
 
     if (userCart) {
-      res.render("user/cart", { userCart });
+      res.render("user/cart", { userCart,user: !!userId  });
     } else {
-      res.render("user/cart", { userCart : '' });
+      res.render("user/cart", { userCart : '' ,user: !!userId });
     }
   } catch (error) {
     console.error(error);

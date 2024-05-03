@@ -183,8 +183,11 @@
                                      <div class="d-flex justify-content gap-3">
                                         <button class="btn btn-primary oval-btn" onclick="addToCart('<%=data._id%>')">Add to
                                             Cart</button>
-                                        
+                                            <button class="btn btn-primary oval-btn" onclick="addToWishlist('<%=data._id%>')">
+                                                WishLIst</button>
                                     </div> 
+
+                                   
 
 
 
@@ -438,6 +441,58 @@
     }
 </script>
 
+<script>
+    function  addToWishlist(prodId){
+    
+    $.ajax({
+        url:"/addToWishlist",
+        method:"post",
+        data:{
+            id:prodId
+        },
+        
+        success:(res)=>{
+            console.log(res,"res");
+            if(res.status=== true){
+                swal.fire({
+                    title:"add to wishlist",
+                    text:"continue shopping",
+                    icon:"success",
+                    timer:2000,
+                    showConfirmButton:false
+                })
+
+            }
+            else if(res.status ===false){
+                swal.fire({
+                    title:res.message,
+                    text:"Continue shopping",
+                    icon:"warning",
+                    timer:2000,
+                    showConfirmButton:false
+                })
+            
+            
+            }else{
+                swal.fire({
+                    title:"you need to login first",
+                    text:"continue your shopping",
+                    icon:"warning",
+                    timer:2000,
+                    showConfirmButton:false
+                }).then(()=>{
+                    window.location.href="/login"
+                })
+
+            }
+        
+    }
+    })
+
+}
+
+
+</script>
 
 
 <!-- ............................................................................................................................ -->

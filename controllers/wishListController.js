@@ -7,9 +7,9 @@ const getWishListPage=async (req,res)=>{
         const UserId=req.session.user
         const wishlist=await WishList.findOne({user:UserId}).populate("products.itemId")
         if(wishlist){
-        res.render("user/wishlist",{wishlist})
+        res.render("user/wishlist",{wishlist,user:UserId})
         }else{
-            res.render("user/wishlist",{wishlist:""})
+            res.render("user/wishlist",{wishlist:"",user:UserId})
         }
         
     } catch (error) {

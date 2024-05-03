@@ -216,9 +216,13 @@
                                             href="/wishlist"><i class="fi-rs-heart"></i></a>
                                         
                                     </div>
-                                    <div class="product-badges product-badges-position product-badges-mrg">
-                                        <span class="hot">New</span>
-                                    </div>
+                                    <% const hasOffer = offer.some(offers => offers.discountedProduct && offers.discountedProduct._id.equals(products[i]._id)); %>
+                                
+                                    <% if (hasOffer) { %>
+                                        <div class="product-badges product-badges-position product-badges-mrg">
+                                            <span class="hot">Mega Offer</span>
+                                        </div>
+                                    <% } %>
                                 </div>
                                  <div class="product-content-wrap">
                                     

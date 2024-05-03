@@ -16,7 +16,20 @@ const GetHomepage = async (req, res) => {
   try {
     const user = req.session.user;
     const userData = await User.findOne({});
-    const offer=await Offer.find({})
+    const offer=await Offer.find({}).populate("discountedProduct")
+    offer.forEach(offer => {
+      // Access the discountedProduct
+      const product = offer.discountedProduct;
+      
+      // Check if product exists
+      if (product) {
+          // Access the productName
+          const productName = product.productName;
+          console.log('Product Name:', productName);
+      } else {
+          console.log('No discounted product found for this offer.');
+      }
+  });
     
     const UnListedCategory=await Category.find({isListed:false})
     const productData = await Product.find({ isBlocked: false,
@@ -33,7 +46,7 @@ const GetHomepage = async (req, res) => {
 
     if (user) {
       if (req.url === "/") {
-        res.render("user/homepage", { user: userData, products: productData,offer });
+        res.render("user/homepage", { user: userData, products: productData,offer});
       }
     } else {
       res.render("user/homepage", { products: productData,offer });

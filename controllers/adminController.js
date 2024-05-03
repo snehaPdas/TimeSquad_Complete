@@ -31,10 +31,10 @@ const verifylogin = async (req, res) => {
         req.session.admin = true;
         res.redirect("/admin");
       } else {
-        res.redirect("/admin/login", { message: "Invalid Password" });
+        res.render("admin/adminlogin", { message: "Invalid Password" });
       }
     } else {
-      res.render("admin/login", { message: "Admin Not Found" });
+      res.render("admin/adminlogin", { message: "Admin Not Found" });
     }
   } catch (error) {
     console.log(error.message);

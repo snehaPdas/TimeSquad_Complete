@@ -27,6 +27,7 @@ const getCheckout = async (req, res) => {
       "items.product"
     );
     const fixedCharges = 50;
+     
 
     const UserId = req.query.userId;
     const findUser = await User.findOne({ user: userId });

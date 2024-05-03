@@ -26,7 +26,7 @@ const getCategory=async(req,res)=>{
 const addCategory=async(req,res)=>{
     try {
         const {name,description}=req.body
-        const categoryExist = await Category.findOne({ name });
+        const categoryExist = await Category.findOne({ name:{ $regex: new RegExp(name, "i") } });
 
         if (description && description.trim() !== "") {
             if(!categoryExist){
@@ -49,7 +49,7 @@ const addCategory=async(req,res)=>{
 
 
                 res.render("admin/category",{catdata:category,message:"category already exist",totalPages,currentPage:page})
-                console.log("category alread exist")
+                
             }
         }else{
             console.log("description need")

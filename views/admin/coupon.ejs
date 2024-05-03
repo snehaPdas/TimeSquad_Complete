@@ -227,7 +227,7 @@
                            
 
                             <div>
-                                <label for="offer-price" class="form-label">Offer Price</label>
+                                <label for="offer-price" class="form-label">Offer Percentage</label>
                                 <input type="text" name="offerPrice" placeholder="Type here" class="form-control" />
                                 <div id="error-offer-price" class="error-message"></div>
                             </div>
@@ -263,7 +263,7 @@
                                         <th>Name</th>
                                         <th>Coupon Code</th>
                                         <th>Expire on</th>
-                                        <th>Offer Price</th>
+                                        <th>Offer percentage</th>
                                         <th>Minimum Price</th>
                                         <th>Status</th>
                                         <th>Edit</th>
@@ -460,10 +460,11 @@ function validateForm(){
             const offerPrice = offerPriceInput.value.trim() !== '' ? parseInt(offerPriceInput.value) : NaN;
             const minimumPrice = minimumPriceInput.value.trim() !== '' ? parseInt(minimumPriceInput.value) : NaN;
 
-            if (isNaN(offerPrice) || isNaN(minimumPrice) || offerPrice >= minimumPrice) {
-                document.getElementById('error-offer-price').innerHTML = 'Offer Price must be greater than Minimum Price';
+            if (isNaN(offerPrice) || isNaN(minimumPrice)  ||offerPrice>=100 ) {
+                document.getElementById('error-offer-price').innerHTML = 'Offer percentage must be under 100 ';
                 return false;
             }
+
 
             if (isNaN(offerPrice) || isNaN(minimumPrice)) {
                 document.getElementById('error-offer-price').innerHTML = 'Please enter numeric values for Offer Price and Minimum Price';
