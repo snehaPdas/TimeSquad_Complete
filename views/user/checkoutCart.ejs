@@ -253,16 +253,7 @@
                                         <div class="ml-150"> 
                                             <table class="table mt-45">
                                                 <tbody>
-                                                    <tr>
-                                                        <th>Fixed Charges</th>
-                                                        <td colspan="2" id="fixedcharges">
-                                                            <% if (locals.fixedCharges) { %>
-                                                                <%= locals.fixedCharges %>
-                                                            <% }else{ %>
-                                                                 0
-                                                                <% } %>
-                                                        </td>
-                                                    </tr>
+                                                    
                                                    
                                                     <th>Discount</th>
                                                     <td colspan="2" id="discount">
@@ -505,7 +496,7 @@ function initiateRazorpayPayment(order, numericValue,id) {
 
     } catch (error) {
         console.error("Error updating order status:", error);
-        alert("An error occurred while updating order status");
+        
     }
 });
 

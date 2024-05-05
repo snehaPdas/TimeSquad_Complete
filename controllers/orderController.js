@@ -22,12 +22,37 @@ let instance = new Razorpay({
 
 const getCheckout = async (req, res) => {
   try {
+
     const userId = req.session.user;
     const userCart = await Cart.findOne({ user: userId }).populate(
       "items.product"
     );
-    const fixedCharges = 50;
-     
+    
+    if (!userCart) {
+      throw new Error("Cart not found");
+  }
+
+
+  for (const item of userCart.items) {
+      if (!item.product) {
+          throw new Error("Product not found in cart item");
+      }
+      console.log("item quantity is grater-------",item.quantity)
+  console.log("item quantity is grater-------",item.product.quantity)
+  
+      if (item.quantity > item.product.quantity) {
+        console.log("item quantity is grater-------",item.quantity)
+        console.log("item quantity is grater-------",item.product.quantity)
+          
+          item.quantity = item.product.quantity;
+        //  item.price=item.product.salePrice * item
+          // userCart.totalPrice=item.price
+      }
+      userCart.totalQuantity = userCart.items.reduce((acc, item) => acc + item.quantity, 0);
+      userCart.totalPrice = userCart.items.reduce((acc, item) => acc + (item.quantity * item.product.salePrice), 0);
+  }
+
+ await userCart.save();
 
     const UserId = req.query.userId;
     const findUser = await User.findOne({ user: userId });
@@ -46,10 +71,11 @@ const getCheckout = async (req, res) => {
         userAddress: addressData,
         userId: findUser,
         coupons: findCoupon,
-        fixedCharges,
+        // fixedCharges,
+        user:userId
       });
     } else {
-      res.render("user/checkoutCart", { userCart: null });
+      res.render("user/checkoutCart", { userCart: null ,user:userId});
     }
   } catch (error) {
     console.log(error);
@@ -193,11 +219,11 @@ const orderPlaced = async (req, res) => {
   try {
     const { totalPrice, addressId, payment } = req.body;
     const parsedTotalPrice = parseFloat(totalPrice);
-    const fixedCharges = 50;
-    const totalPriceWithCharges = parsedTotalPrice + fixedCharges;
-    console.log("fixed price", fixedCharges);
-    console.log("fixed price", totalPrice);
-    console.log("Total Price with Charges:", totalPriceWithCharges);
+   // const fixedCharges = 50;
+    //const totalPriceWithCharges = parsedTotalPrice + fixedCharges;
+   // console.log("fixed price", fixedCharges);
+    //console.log("fixed price", totalPrice);
+    //console.log("Total Price with Charges:", totalPriceWithCharges);
 
     const userId = req.session.user;
     const address = await Address.findOne({ userId: userId });
@@ -235,7 +261,7 @@ const orderPlaced = async (req, res) => {
       const newOrder = new Order({
         userId: userId,
         products: products,
-        totalPrice: totalPriceWithCharges,
+        totalPrice: totalPrice,
         address: addressId,
         address: findAddress,
         payment: payment,
@@ -249,14 +275,14 @@ const orderPlaced = async (req, res) => {
         order: savedOrder,
         method: "cod",
         orderId: userId,
-        totalPrice: totalPriceWithCharges,
-        fixedCharges,
+        totalPrice: totalPrice,
+        // fixedCharges,
       });
     } else if (payment === "online") {
       const razorOrder = new Order({
         userId: userId,
         products: products,
-        totalPrice: totalPriceWithCharges,
+        totalPrice: totalPrice,
         address: addressId,
         address: findAddress,
         payment: payment,
@@ -276,8 +302,8 @@ const orderPlaced = async (req, res) => {
         method: "online",
         razorpayOrder: generateOrder,
         ordrId: razorsaveOrder._id,
-        totalPrice: totalPriceWithCharges,
-        fixedCharges,
+        totalPrice: totalPrice,
+        // fixedCharges,
       });
     } else if (payment === "wallet") {
       if (totalPrice <= findUser.wallet) {
@@ -290,7 +316,7 @@ const orderPlaced = async (req, res) => {
         const walletOrder = new Order({
           userId: userId,
           products: products,
-          totalPrice: totalPriceWithCharges,
+          totalPrice: totalPrice,
           address: addressId,
           address: findAddress,
           payment: payment,
@@ -306,8 +332,8 @@ const orderPlaced = async (req, res) => {
           method: "wallet",
           order: walletsaveOrder,
           orderId: walletOrder,
-          totalPrice: totalPriceWithCharges,
-          fixedCharges,
+          totalPrice: totalPrice,
+          // fixedCharges,
         });
       } else {
         res.json({ payment: false, method: "wallet", success: false });
@@ -437,7 +463,7 @@ const cancelOrder = async (req, res) => {
       if (product) {
         product.quantity += quantity;
         console.log(
-          "Updated quantity.............................:",
+          "Updated quantity.:",
           product.quantity
         );
 
@@ -458,7 +484,7 @@ const cancelOrderAdmin = async (req, res) => {
     });
     const userId = req.session.user;
     const findCustomer = await User.findOne({ _id: userId });
-    console.log("customer is here==========", findCustomer);
+  
     if (!finUser) {
       return res.status(404).json({ message: "user not found" });
     }

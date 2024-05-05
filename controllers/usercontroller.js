@@ -434,24 +434,14 @@ const filterProduct = async (req, res) => {
       const category = req.query.category;
     
       const findCategory = category ? await Category.findOne({ _id:category }) : null;
-         
-    
-      
-
-
-
-      const findProducts = await Product.find({ isBlocked: false,
+     const findProducts = await Product.find({ isBlocked: false,
         $and:[{"category.categoryId":{$nin:UnListedCategory.map(cat=>cat._id)}},{"category.categoryId":findCategory._id}]
       }).populate({
         path:"category",
         match:{isListed:true},
         select:"name"
       })
-    
-
-      
-
-
+  
       const categories = await Category.find({ isListed: true });
       let itemsPerPage = 9;
       let currentPage = parseInt(req.query.page) || 1;
@@ -485,8 +475,6 @@ const sortProduct = async (req, res) => {
     
       let option = req.body.option;
       let category = req.body.category;
-      console.log("ppppp",category)
-
       let itemsPerPage = 9;
       let currentPage = parseInt(req.body.page) || 1;
       let startIndex = (currentPage - 1) * itemsPerPage;
