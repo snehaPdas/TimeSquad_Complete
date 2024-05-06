@@ -472,6 +472,7 @@ const filterProduct = async (req, res) => {
 // ..........................................................................................
 const sortProduct = async (req, res) => {
    try {
+    console.log("========================>>>>>>>>>>>.")
     
       let option = req.body.option;
       let category = req.body.category;
@@ -489,11 +490,11 @@ const sortProduct = async (req, res) => {
 
       if (option === "highToLow") {
         
-          // data = await Product.find({ isBlocked: false }).sort({ salePrice: -1 });
+          data = await Product.find({ isBlocked: false }).sort({ salePrice: -1 });
           data = await Product.find(query).sort({ salePrice: -1 });
       } else if (option === "lowToHigh") {
         
-          //data = await Product.find({ isBlocked: false }).sort({ salePrice: 1 });
+          data = await Product.find({ isBlocked: false }).sort({ salePrice: 1 });
           data = await Product.find(query).sort({ salePrice: 1 });
       } else {
           throw new Error("Invalid selection");

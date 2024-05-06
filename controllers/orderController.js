@@ -286,7 +286,7 @@ const orderPlaced = async (req, res) => {
         address: addressId,
         address: findAddress,
         payment: payment,
-        orderStatus: "pending",
+        orderStatus: "confirmed",
         date: formattedDate,
       });
       const razorsaveOrder = await razorOrder.save();
@@ -445,7 +445,7 @@ const cancelOrder = async (req, res) => {
     if (findOrder.payment === "wallet" || findOrder.payment === "online") {
       findUser.wallet += findOrder.totalPrice;
       const newHistory = {
-        amount: findOrder.totalPages,
+        amount: findOrder.totalPrice,
         status: "credit",
         date: Date.now(),
       };

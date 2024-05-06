@@ -325,102 +325,72 @@
 
 
 
-
-
-
-function handleSortChange(selectedOption) {
+function handleSortChange(selectedOption){
     
-    
-    const option = selectedOption;
-    
-
-    
-    const bodyData = {
-         option: option,
-        category: selectedCategoryId
-    };
-
-    fetch('/sortProducts', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+    let option = selectedOption;
+    $.ajax({
+        url: "/sortProducts",
+        method: "POST",
+        data: {
+            option: option,
+            
         },
-        body: JSON.stringify(bodyData)
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to fetch sorted products');
+        success: (response) => {
+            if (response.status === true) {
+                const sortedProducts = response.data;
+                console.log(sortedProducts);
+                
+                $(".product-grid-3").empty();
+                
+                sortedProducts.currentProduct.forEach((product) => {
+                    const productDiv = $("<div class='col-lg-4 col-md-4 col-12 col-sm-6'>" +
+                        "<div class='product-cart-wrap mb-30'>" +
+                        "<div class='product-img-action-wrap'>" +
+                        "<div class='product-img product-img-zoom'>" +
+                        "<a href='/productDetails?id=" + product.id + "'>" +
+                        "<img class='default-img' src='/uploads/product-images/" + product.productImage[0] + "' alt=''>" +
+                        "</a>" +
+                        "</div>" +
+                        "<div class='product-action-1'>" +
+                        "<a aria-label='Add To Wishlist' class='action-btn hover-up' href='javascript:void(0);' onclick='addToWishlist(\"" + product._id + "\")'>" +
+                        "<i class='fi-rs-heart'></i>" +
+                        "</a>" +
+                        "</div>" +
+                        "<div class='product-badges product-badges-position product-badges-mrg'>" +
+                        "<span class='hot'>Hot</span>" +
+                        "</div>" +
+                        "</div>" +
+                        "<div class='product-content-wrap'>" +
+                        "<div class='product-category'>" +
+                        "<a href='shop-grid-right.html'>" + product.brand + "</a>" +
+                        "</div>" +
+                        "<h2><a href='shop-product-right.html'>" + product.productName + "</a></h2>" +
+                        "<div class='product-price'>" +
+                        "<span>₹" + product.salePrice.toLocaleString('en-IN') + "</span>" +
+                        "<span class='old-price'>₹" + product.regularPrice.toLocaleString('en-IN') + "</span>" +
+                        "</div>" +
+                        "<div class='product-action-1 show'>" +
+                        "<a aria-label='Add To Cart' class='action-btn hover-up' href='shop-cart.html'>" +
+                        "<i class='fi-rs-shopping-bag-add'></i>" +
+                        "</a>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>");
+
+                    
+                    $(".product-grid-3").append(productDiv);
+                    
+                });
+            } else {
+                console.error("Error in sorting products:", response);
+            }
         }
-        return response.json();
-    })
-    .then(data => {
-        
-        if (data && data.status === true && data.data) {
-            const sortedProducts = data.data.currentProduct;
-    
-            renderSortedProducts(sortedProducts);
-        } else {
-            throw new Error('Invalid response format');
-        }
-    })
-    .catch(error => {
-        console.error('Error fetching sorted products:', error);
-        
-        showError('Failed to fetch sorted products. Please try again later.');
     });
 }
 
-// ..........................................
 
 
-
-// ......................
-function renderSortedProducts(products) {
-    
-    const productGrid = document.querySelector('.product-grid-3');
-    productGrid.innerHTML = '';
-
-    products.forEach(product => {
-        const productDiv = document.createElement('div');
-        productDiv.classList.add('col-lg-4', 'col-md-4', 'col-12', 'col-sm-6');
-        productDiv.innerHTML = `
-        <div class='product-cart-wrap mb-30'>
-    <div class='product-img-action-wrap'>
-        <div class='product-img product-img-zoom'>
-            <a href='/productDetails?id=${product._id}'>
-                <img class='default-img' src='/uploads/product-images/${product.productImage[0]}' alt='${product.productName}'>
-            </a>
-        </div>
-        <div class='product-action-1'>
-            <a aria-label='Add To Wishlist' class='action-btn hover-up' href='javascript:void(0);' onclick='addToWishlist("${product._id}")'>
-                <i class='fi-rs-heart'></i>
-            </a>
-        </div>
-        <div class='product-badges product-badges-position product-badges-mrg'>
-            <span class='hot'>Hot</span>
-        </div>
-    </div>
-    <div class='product-content-wrap'>
-        <div class='product-category'>
-            <a href='shop-grid-right.html'></a>
-        </div>
-        <h2><a href='shop-product-right.html'>${product.productName}</a></h2>
-        <div class='product-price'>
-            <span>₹${product.salePrice.toLocaleString('en-IN')}</span>
-            <span class='old-price'>₹${product.regularPrice.toLocaleString('en-IN')}</span>
-        </div>
-        <div class='product-action-1 show'>
-            <a aria-label='Add To Cart' class='action-btn hover-up' href='shop-cart.html'>
-                <i class='fi-rs-shopping-bag-add'></i>
-            </a>
-        </div>
-    </div>
-</div>
-  </div>
-        `
-        productGrid.appendChild(productDiv);
-    });
-}
 
 function showError(message) {
 
