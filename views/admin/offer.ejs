@@ -220,10 +220,12 @@
                                 <label for="offer-on" class="form-label">Offer On</label>
                                 <select id="offer-on" name="offerOn"  class="form-control">
                                     <option value="" disabled selected>Select offerOn</option>
+                                   
                                     <option value="product">Product</option>
                                     <option value="category">Category</option>
                                 </select>
-                                <div id="error-coupon-on" class="error-message"></div>
+                                <div id="selection-error"class="error-message"></div>
+                                <!-- <div id="error-coupon-on" class="error-message"></div> -->
                             </div>
                                      <div class="mb-4">
                                       <label class="form-label">Product</label>
@@ -276,27 +278,16 @@
                                     id="expiringDate" />
                                 <div id="error-end-date" class="error-message"></div>
                             </div>
-
-                           
-
                             <div>
                                 <label for="offer-price" class="form-label">Discount Price</label>
                                 <input type="text" name="offerPrice" placeholder="Type here" class="form-control" />
                                 <div id="error-offer-price" class="error-message"></div>
                             </div>
-                           
-
-                          
-
-                            <div class="d-grid">
+                             <div class="d-grid">
                                 <button class="btn btn-primary mt-20" onclick=" return validateForm(event)"
                                     type="submit">Add Offer</button>
                             </div>
-
-                          
-
-                             
-                            <div id="err-msg" class="error-message"></div>
+                         <div id="err-msg" class="error-message"></div>
 
                         </body>
                     </form>
@@ -328,12 +319,7 @@
                                     <td class="text-start"><%=offerData[i].discountOn%></td>
                                     <td class="text-start"><%=offerData[i].expireOn.toLocaleDateString()%></td>
                                     <td class="text-start"><%=offerData[i].DiscountValue %>%</td>
-
-
-                                    
-                                   
-
-                                    <td class="text-start" width="10%">
+                                       <td class="text-start" width="10%">
                                         <a href="#" class="btn btn-sm btn-danger rounded font-sm mt-15" onclick="openDeleteModal('<%= offerData[i]._id %>')">Delete</a>
                                 
                                 
@@ -430,6 +416,80 @@
 
         }
     });
+
+
+
+</script>
+
+// validation
+<script>
+
+function validateForm(){
+    
+    document.querySelectorAll('.error-message').forEach(element => element.innerHTML = '');
+    
+    const eDateInput = document.getElementsByName('endDate')[0]; 
+    const eDate = eDateInput.value.trim();
+    
+    const eDateObj = new Date(eDate);
+     const todayDateObj = new Date();
+
+
+    if (eDateObj <= todayDateObj) {
+    document.getElementById('error-end-date').innerHTML = 'End date should be greater than or equal to today\'s date';
+    return false;
+            }
+
+            
+            let name = document.getElementsByName('offerName')[0].value.trim();
+            const nameRegex = /^[A-Za-z0-9]{1,50}$/;
+            if (name === '') {
+            document.getElementById('error-offer-name').innerHTML = 'Please enter a offer name';
+            return false;
+            }
+
+
+            if (!nameRegex.test(name)) {
+                document.getElementById('error-offer-name').innerHTML = 'Please Type Valid offer Name';
+                return false;
+            }
+
+           const offerOnSelect = document.getElementById('offer-on');
+           const offerOnValue = offerOnSelect.value;
+
+              if (offerOnValue === '') {
+             document.getElementById('selection-error').innerHTML = 'Please select an option';
+             return false;
+           } 
+        
+
+            const offerPriceInput = document.getElementsByName('offerPrice')[0]
+           
+            if (offerPriceInput.value === '') {
+            document.getElementById('error-offer-price').innerHTML = 'Please enter an offer price';
+            return false;
+             }
+            
+             const offerPrice = parseFloat(offerPriceInput.value);
+
+            if (offerPrice>=100 ) {
+                document.getElementById('error-offer-price').innerHTML = 'Offer percentage must be under 100 ';
+                return false;
+            }
+
+
+            if (isNaN(offerPrice)) {
+                document.getElementById('error-offer-price').innerHTML = 'Please enter numeric values for Offer Price ';
+                return false;
+            }
+       
+
+
+     return true;
+    
+}
+
+
 
 
 

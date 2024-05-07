@@ -667,7 +667,7 @@ const retryPayment = async (req, res) => {
     
     await Order.updateOne(
       { _id: orderId },
-      { $set: { orderStatus: "pending" } }
+      { $set: { orderStatus: "confirmed" } }
     ).then((data) => console.log(data));
     const totalAmount = order.totalPrice;
 
